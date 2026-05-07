@@ -84,8 +84,8 @@ mediause auth health --json
 
 每个 Skill 文档都必须至少覆盖以下 core 指令：
 
-- mediause sites list
-- mediause sites add <site>
+- mediause plugin list
+- mediause plugin add <site>
 - mediause auth login <platform>
 - mediause use account <platform:account_id> [--policy]
 - mediause auth health
@@ -109,7 +109,7 @@ mediause auth health --json
 
 建议固化为 5 步：
 
-1. 发现与检查：sites list / sites add / site help
+1. 发现与检查：plugin list / plugin add / plugin help
 2. 绑定上下文：use account（必须成功）
 3. 状态检查：auth health（未登录则 auth login，再次 use account + auth health）
 4. 执行动作：site dynamic command
@@ -125,8 +125,8 @@ mediause auth health --json
 示例：
 
 ```powershell
-mediause sites list --json
-mediause sites add weibo --json
+mediause plugin list --json
+mediause plugin add weibo --json
 mediause weibo -h
 mediause weibo post -h
 mediause use account weibo:main --policy balanced --json
@@ -168,8 +168,8 @@ Skill 应只声明 manifest 已存在的能力，不要虚构命令。
 
 站点插件获取规范：
 
-- 通过 `mediause sites list` 获取当前支持网站。
-- 通过 `mediause sites add <site>` 获取并安装对应网站 plugin。
+- 通过 `mediause plugin list` 获取当前支持网站。
+- 通过 `mediause plugin add <site>` 获取并安装对应网站 plugin。
 
 guest 支持规范：
 
@@ -292,7 +292,7 @@ allowed-tools: Bash(MediaUse:*)
 - mediause manage key:
 
 # 3. Core Commands
-- sites list
+- plugin list
 - auth login
 - use account
 - auth health

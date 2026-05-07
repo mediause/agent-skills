@@ -27,6 +27,7 @@ Examples:
 
 - agent-skills/weibo/SKILL.md
 - agent-skills/xiaohongshu/SKILL.md
+- agent-skills/hackernews/SKILL.md
 
 ## Compatibility Contract
 

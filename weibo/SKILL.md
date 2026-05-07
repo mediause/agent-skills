@@ -1,15 +1,15 @@
 ---
-name: mediause-weibo
-summary: Standardized Weibo skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Weibo dynamic command map, and safety/rate controls.
+name: mediause-weibov2
+summary: Standardized weibov2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full weibov2 dynamic command map, and safety/rate controls.
 ---
 
-# MediaUse Weibo Skill
+# MediaUse weibov2 Skill
 
-This skill defines the standardized workflow for running Weibo automation through MediaUse.
+This skill defines the standardized workflow for running weibov2 automation through MediaUse.
 
 ## Scope
 
-Use this skill when the task targets Weibo operations such as:
+Use this skill when the task targets weibov2 operations such as:
 
 - Publish: feed, repost
 - Read: feed, detail, notifications
@@ -44,7 +44,7 @@ Current support status:
 
 Recommended skill install path:
 
-- .mediause/skills/weibo/SKILL.md
+- .mediause/skills/weibov2/SKILL.md
 
 ## 2. Get and Configure MediaUse Key
 
@@ -74,10 +74,10 @@ Always follow this order:
 ### 3.1 Discover and plugin setup
 
 ```powershell
-mediause sites list --json
-mediause sites add weibo --json
-mediause weibo -h
-mediause weibo post -h
+mediause plugin list --json
+mediause plugin add weibov2 --json
+mediause weibov2 -h
+mediause weibov2 post -h
 ```
 
 ### 3.2 Bind context before any read/write
@@ -91,7 +91,7 @@ mediause weibo post -h
 
 ```powershell
 mediause auth list --json
-mediause use account weibo:main --policy balanced --json
+mediause use account weibov2:main --policy balanced --json
 ```
 
 ### 3.3 Auth health precondition
@@ -105,8 +105,8 @@ mediause auth health --json
 If `auth health` indicates not logged in/expired:
 
 ```powershell
-mediause auth login weibo --json
-mediause use account weibo:main --policy balanced --json
+mediause auth login weibov2 --json
+mediause use account weibov2:main --policy balanced --json
 mediause auth health --json
 ```
 
@@ -115,7 +115,7 @@ mediause auth health --json
 If guest mode is supported by the current CLI/site runtime:
 
 ```powershell
-mediause use account weibo:guest --json
+mediause use account weibov2:guest --json
 ```
 
 Guest mode rules:
@@ -124,50 +124,50 @@ Guest mode rules:
 - Block all write operations (post/reply/engage write intent).
 - If write is required, switch to logged-in account context.
 
-## 4. Weibo Dynamic Command Map (v1)
+## 4. weibov2 Dynamic Command Map (v1)
 
 Source schema:
 
-- plugin: `plugin.weibo`
+- plugin: `plugin.weibov2`
 - schema version: `v1`
 - supported layer: `L3Bridge`
 
 ### 4.1 post.*
 
-- `mediause weibo post feed [--title <text>] [--text <text>] [--media <paths>] --json`
-- `mediause weibo post repost --id <post_id> [--text <text>] --json`
+- `mediause weibov2 post feed [--title <text>] [--text <text>] [--media <paths>] --json`
+- `mediause weibov2 post repost --id <post_id> [--text <text>] --json`
 
 ### 4.2 get.*
 
-- `mediause weibo get feed [--limit <n>] [--type <type>] --json`
-- `mediause weibo get detail --id <item_id> [--comments <bool>] --json`
-- `mediause weibo get notif [--type <type>] --json`
+- `mediause weibov2 get feed [--limit <n>] [--type <type>] --json`
+- `mediause weibov2 get detail --id <item_id> [--comments <bool>] --json`
+- `mediause weibov2 get notif [--type <type>] --json`
 
 ### 4.3 user.*
 
-- `mediause weibo user profile [--me <bool>] [--user-id <uid>] --json`
-- `mediause weibo user profile-update [--bio <text>] [--name <text>] [--avatar <path>] --json`
-- `mediause weibo user feed --user-id <uid> [--limit <n>] [--type <type>] --json`
-- `mediause weibo user followers --user-id <uid> [--limit <n>] --json`
-- `mediause weibo user following --user-id <uid> [--limit <n>] --json`
+- `mediause weibov2 user profile [--me <bool>] [--user-id <uid>] --json`
+- `mediause weibov2 user profile-update [--bio <text>] [--name <text>] [--avatar <path>] --json`
+- `mediause weibov2 user feed --user-id <uid> [--limit <n>] [--type <type>] --json`
+- `mediause weibov2 user followers --user-id <uid> [--limit <n>] --json`
+- `mediause weibov2 user following --user-id <uid> [--limit <n>] --json`
 
 ### 4.4 reply.*
 
-- `mediause weibo reply comment --post-id <post_id> --text <text> --json`
-- `mediause weibo reply sub --comment-id <comment_id> --text <text> --json`
-- `mediause weibo reply message --user-id <uid> --text <text> --json`
+- `mediause weibov2 reply comment --post-id <post_id> --text <text> --json`
+- `mediause weibov2 reply sub --comment-id <comment_id> --text <text> --json`
+- `mediause weibov2 reply message --user-id <uid> --text <text> --json`
 
 ### 4.5 search.*
 
-- `mediause weibo search text --keyword <keyword> [--limit <n>] --json`
-- `mediause weibo search user --query <query> [--limit <n>] --json`
-- `mediause weibo search hot --json`
+- `mediause weibov2 search text --keyword <keyword> [--limit <n>] --json`
+- `mediause weibov2 search user --query <query> [--limit <n>] --json`
+- `mediause weibov2 search hot --json`
 
 ### 4.6 engage.*
 
-- `mediause weibo engage like --id <item_id> [--type <type>] --json`
-- `mediause weibo engage follow --user-id <uid> [--undo <bool>] --json`
-- `mediause weibo engage collect --id <item_id> --json`
+- `mediause weibov2 engage like --id <item_id> [--type <type>] --json`
+- `mediause weibov2 engage follow --user-id <uid> [--undo <bool>] --json`
+- `mediause weibov2 engage collect --id <item_id> --json`
 
 ## 5. Operational Constraints (Mandatory)
 
@@ -234,29 +234,29 @@ If a limit is hit:
 ### 6.1 Hot-topic to publish
 
 ```powershell
-mediause use account weibo:main --json
+mediause use account weibov2:main --json
 mediause auth health --json
-mediause weibo search hot --json
-mediause weibo post feed --text "<draft_text>" --media c:/tmp/a.png --json
+mediause weibov2 search hot --json
+mediause weibov2 post feed --text "<draft_text>" --media c:/tmp/a.png --json
 mediause trace last --json
 ```
 
 ### 6.2 Monitor and engage
 
 ```powershell
-mediause use account weibo:main --json
+mediause use account weibov2:main --json
 mediause auth health --json
-mediause weibo get notif --type mention --json
-mediause weibo reply comment --post-id <id> --text "received" --json
+mediause weibov2 get notif --type mention --json
+mediause weibov2 reply comment --post-id <id> --text "received" --json
 mediause trace last --json
 ```
 
 ### 6.3 Read-only guest branch (if supported)
 
 ```powershell
-mediause use account weibo:guest --json
-mediause weibo search hot --json
-mediause weibo get feed --limit 20 --json
+mediause use account weibov2:guest --json
+mediause weibov2 search hot --json
+mediause weibov2 get feed --limit 20 --json
 mediause trace last --json
 ```
 
@@ -269,7 +269,7 @@ Before run:
 3. API key configured and verified.
 4. Account context bound via `mediause use account <platform:account_id>`.
 5. `mediause auth health --json` checked after context bind.
-6. If not logged in, run `mediause auth login weibo --json` and re-bind context.
+6. If not logged in, run `mediause auth login weibov2 --json` and re-bind context.
 7. Pacing policy is enabled.
 
 During run:
@@ -289,21 +289,21 @@ After run:
 
 ```powershell
 # discover
-mediause sites list --json
-mediause sites add weibo --json
-mediause weibo -h
-mediause weibo post -h
+mediause plugin list --json
+mediause plugin add weibov2 --json
+mediause weibov2 -h
+mediause weibov2 post -h
 
 # context + status
 mediause auth list --json
-mediause use account weibo:main --json
+mediause use account weibov2:main --json
 mediause auth health --json
 
 # read action
-mediause weibo search hot --json
+mediause weibov2 search hot --json
 
 # write action
-mediause weibo post feed --text "hello" --json
+mediause weibov2 post feed --text "hello" --json
 
 # trace
 mediause trace last --json
