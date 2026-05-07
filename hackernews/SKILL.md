@@ -1,6 +1,6 @@
 ---
 name: mediause-hackernews
-summary: Standardized Hacker News skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Hacker News dynamic command map, and safety/rate controls.
+description: Use when handling MediaUse Hacker News automation tasks, including story list retrieval, story search, item thread reading, and user profile lookup, with Windows install, key onboarding, strict context/auth flow, full dynamic command map, and safety/rate controls.
 ---
 
 # MediaUse Hacker News Skill

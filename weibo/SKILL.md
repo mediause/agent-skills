@@ -1,6 +1,6 @@
 ---
 name: mediause-weibov2
-summary: Standardized weibov2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full weibov2 dynamic command map, and safety/rate controls.
+description: Standardized weibov2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full weibov2 dynamic command map, and safety/rate controls.
 ---
 
 # MediaUse weibov2 Skill
