@@ -4,7 +4,7 @@
 
 - 让 Agent 更容易理解并稳定调用 MediaUse CLI。
 - 统一不同网站 Skill 的安装、鉴权、执行、约束与输出格式。
-- 基于同一模板快速生成各站点 Skill（如 weibo、xiaohongshu、zhihu）。
+- 基于同一模板快速生成各站点 Skill（如 weibo、xiaohongshu、chatgpt）。
 
 适用架构：core cmd + site dynamic cmd。
 
