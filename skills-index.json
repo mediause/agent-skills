@@ -1,9 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-11T02:44:02.548Z",
+  "generatedAt": "2026-05-11T03:15:03.748Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
+    {
+      "pluginName": "google",
+      "slug": "google",
+      "title": "MediaUse Google Skill",
+      "summary": "This skill defines the standardized workflow for running Google search and discovery automation through MediaUse.",
+      "frontmatterName": "mediause-google",
+      "description": "Standardized Google skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Google dynamic command map, and safety/rate controls.",
+      "sourcePath": "google/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/google/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/google/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-05-11",
+      "version": "v1"
+    },
     {
       "pluginName": "hackernews",
       "slug": "hackernews",
