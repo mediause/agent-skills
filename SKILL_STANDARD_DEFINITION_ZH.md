@@ -75,8 +75,11 @@ mediause auth health --json
 
 - `auth health` 仅在 `use account` 成功后可用，用于查询当前绑定上下文的登录/授权状态。
 - `use account` 的参数格式为 `<platform:account_id>`，其中 `account_id` 可通过 `mediause auth list --json` 获取。
+- `use account` 默认以隐藏浏览器方式启动上下文，不主动展示浏览器窗口。
+- 若需要人工观察或接管浏览器，可使用 `mediause use account <site>:<account_id> --show --json` 显示浏览器。
 - 若尚未完成 `use account`，不得调用 `auth health`，应先执行 `mediause use account <site>:<account_id> --json`。
 - 若 `auth health` 结果显示未登录或授权失效，必须执行 `mediause auth login <site> --json`，然后重新 `use account` 并再次 `auth health`。
+- 若页面出现 `unusual traffic`、验证码、风控确认等提示，可重新执行 `mediause use account <site>:<account_id> --show --json` 打开浏览器，由人工完成验证码或确认；完成后同一账号的后续任务通常可恢复正常。
 
 ## 3. 命令介绍与标准调用流程（Core + Dynamic）
 
@@ -88,6 +91,7 @@ mediause auth health --json
 - mediause plugin add <site>
 - mediause auth login <platform>
 - mediause use account <platform:account_id> [--policy]
+- mediause use account <platform:account_id> [--policy] [--show]
 - mediause auth health
 - mediause trace last
 - mediause task status --task-id <id>
@@ -105,6 +109,7 @@ mediause auth health --json
 
 - 只有在 `mediause use account <platform:account_id>` 成功执行后，才可以继续执行读取（get/search/user...）与发布（post/reply/engage...）操作。
 - 若未完成 `use account`，Skill 必须中止业务命令并返回引导信息。
+- `use account` 默认隐藏浏览器；仅在需要人工观察、调试或处理验证码时使用 `--show`。
 - 支持 guest 的网站可使用 `mediause use account <site>:guest` 进入访客模式；该模式只允许读取操作，不允许发布/互动写操作。
 
 建议固化为 5 步：
@@ -118,6 +123,7 @@ mediause auth health --json
 访客模式分支：
 
 - 若目标网站支持 guest，可在第 2 步使用 `mediause use account <site>:guest --json`。
+- 若 guest 模式下遇到 `unusual traffic` 或验证码，可改为执行 `mediause use account <site>:guest --show --json`，人工完成验证后再继续读取动作。
 - 无需第 3 步进行状态检查
 - guest 模式下仅执行 read/fetch 类动作。
 - 当执行 post/reply/engage 等写动作时，Skill 必须直接拦截并提示切换到已登录账号。
@@ -136,6 +142,9 @@ mediause use account weibo:main --policy balanced --json
 mediause auth health --json
 mediause weibo search hot --json
 mediause trace last --json
+
+# 若遇到 unusual traffic 或验证码，可显示浏览器人工处理
+mediause use account weibo:main --policy balanced --show --json
 
 # guest 模式（仅当站点支持）
 mediause use account weibo:guest --json
@@ -259,6 +268,7 @@ mediause trace last --json
 
 - 必须返回结构化错误（error_code / message / suggestion）。
 - 优先使用 --json 调用，便于 Agent 重试与分支决策。
+- 若失败原因为 `unusual traffic`、验证码或人工确认需求，Skill 应明确提示使用 `mediause use account <site>:<account_id> --show --json` 打开浏览器处理。
 
 ## 6. 标准化 Skill 文档结构（强约束）
 

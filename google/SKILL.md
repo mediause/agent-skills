@@ -15,6 +15,14 @@ Use this skill when the task targets Google operations such as:
 - Search: web results, query suggestions
 - Get: news headlines, daily trends
 
+Google skill is guest-only.
+
+- Use `mediause use account google:guest --json`.
+- `use account` defaults to a hidden browser session.
+- If you need to see the browser, use `mediause use account google:guest --show --json`.
+- Do not call `mediause auth login google --json` for this skill.
+- If Google shows an `unusual traffic` prompt or captcha, rerun `use account` with `--show` and complete the verification manually.
+
 ## 1. Install MediaUse CLI (Windows Only)
 
 Use the official install script for Windows:
@@ -64,9 +72,8 @@ Always follow this order:
 
 1. Discover site and commands.
 2. Bind account context with `use account`.
-3. Check status with `auth health`.
-4. Execute dynamic site actions.
-5. Verify with trace/task.
+3. Execute dynamic site actions.
+4. Verify with trace/task.
 
 ### 3.1 Discover and plugin setup
 
@@ -88,24 +95,20 @@ mediause google search -h
 
 Google manifest default account id is `guest`.
 
+By default, `use account` keeps the browser hidden. Use `--show` only when you need to inspect the page or manually resolve a challenge.
+
 ```powershell
 mediause auth list --json
 mediause use account google:guest --policy balanced --json
 ```
 
-### 3.3 Auth health precondition
+### 3.3 Auth health
 
-`auth health` is valid only after successful `use account`.
+`auth health` is not required for the normal Google guest flow.
 
-```powershell
-mediause auth health --json
-```
-
-If `auth health` indicates not logged in/expired for a non-guest account:
+Use it only as an optional diagnostic command if the runtime needs an explicit session check.
 
 ```powershell
-mediause auth login google --json
-mediause use account google:main --policy balanced --json
 mediause auth health --json
 ```
 
@@ -121,6 +124,9 @@ Guest mode rules:
 
 - Read-only operations only.
 - This plugin command set does not include write operations.
+- No login flow is required.
+- Default mode keeps the browser hidden.
+- Use `mediause use account google:guest --show --json` when you need to complete captcha or `unusual traffic` verification manually.
 
 ## 4. Google Dynamic Command Map (v1)
 
@@ -187,6 +193,7 @@ If a limit is hit:
 - Prefer `--json` output for machine workflows.
 - Require structured error handling with stable fields/code when available.
 - On blocked/rate-limit/risk prompt, stop and return actionable next steps.
+- If Google returns `unusual traffic` or a captcha wall, reopen the session with `mediause use account google:guest --show --json`, complete the verification manually, then rerun the read action.
 
 ## 6. Workflow Examples
 
@@ -194,7 +201,6 @@ If a limit is hit:
 
 ```powershell
 mediause use account google:guest --json
-mediause auth health --json
 mediause google search web --keyword "agent browser" --limit 10 --lang en --json
 mediause google get news --keyword "agent browser" --limit 10 --lang en --region US --json
 mediause trace last --json
@@ -204,7 +210,6 @@ mediause trace last --json
 
 ```powershell
 mediause use account google:guest --json
-mediause auth health --json
 mediause google get trends --region US --limit 20 --json
 mediause google search suggest --keyword "ai coding" --lang en --json
 mediause trace last --json
@@ -214,8 +219,16 @@ mediause trace last --json
 
 ```powershell
 mediause use account google:guest --json
-mediause auth health --json
 mediause google account health --json
+mediause trace last --json
+```
+
+### 6.4 Unusual traffic recovery
+
+```powershell
+mediause use account google:guest --show --json
+# complete the captcha or unusual traffic verification in the visible browser
+mediause google search web --keyword "agent browser" --limit 10 --lang en --json
 mediause trace last --json
 ```
 
@@ -226,16 +239,17 @@ Before run:
 1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
-4. Account context bound via `mediause use account <platform:account_id>`.
-5. `mediause auth health --json` checked after context bind.
-6. If non-guest account is used and not logged in, run `mediause auth login google --json` and re-bind context.
+4. Account context bound via `mediause use account google:guest --json`.
+5. Login is not required for this skill.
+6. If manual verification may be needed, be ready to rerun `use account` with `--show`.
 7. Pacing policy is enabled.
 
 During run:
 
 1. Respect delays and minimum spacing.
 2. Stop on anti-bot/risk prompts.
-3. Avoid repetitive burst loops.
+3. If `unusual traffic` appears, rerun `mediause use account google:guest --show --json` and complete the verification manually.
+4. Avoid repetitive burst loops.
 
 After run:
 
@@ -255,7 +269,7 @@ mediause google search -h
 # context + status
 mediause auth list --json
 mediause use account google:guest --json
-mediause auth health --json
+mediause use account google:guest --show --json
 
 # read actions
 mediause google search web --keyword "open source" --limit 10 --json
