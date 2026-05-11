@@ -1,0 +1,325 @@
+---
+name: mediause-reddit
+description: Standardized Reddit skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Reddit dynamic command map, and safety/rate controls.
+---
+
+# MediaUse Reddit Skill
+
+This skill defines the standardized workflow for running Reddit automation through MediaUse.
+
+## Scope
+
+Use this skill when the task targets Reddit operations such as:
+
+- Account: health check
+- Get: hot, popular, frontpage, subreddit feed
+- Search: posts
+- Read: item thread and comments
+- User: profile, posts, comments
+- Collection: saved, upvoted
+- Engage: comment, save, upvote, subscribe
+
+## 1. Install MediaUse CLI (Windows Only)
+
+Use the official install script for Windows:
+
+- https://release.mediause.dev/install.ps1
+
+Run:
+
+```powershell
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+```
+
+Then verify in the same shell:
+
+```powershell
+mediause --version
+```
+
+Current support status:
+
+- Windows: supported
+- Linux: not supported yet
+- macOS: not supported yet
+
+Recommended skill install path:
+
+- .mediause/skills/reddit/SKILL.md
+
+## 2. Get and Configure MediaUse Key
+
+### 2.1 Apply for key
+
+1. Open https://mediause.dev/
+2. Sign in to your account.
+3. Open Project.
+4. Create or copy your API key.
+
+### 2.2 Configure key in CLI
+
+```powershell
+mediause manage key <your_key> --json
+```
+
+## 3. Core Flow (Mandatory Order)
+
+Always follow this order:
+
+1. Discover site and commands.
+2. Bind account context with `use account --show`.
+3. Check status with `auth health`.
+4. Execute dynamic site actions.
+5. Verify with trace/task.
+
+### 3.1 Discover and plugin setup
+
+```powershell
+mediause plugin list --json
+mediause plugin add reddit --json
+mediause reddit -h
+mediause reddit get -h
+```
+
+### 3.2 Bind context before any read/write (show required)
+
+`use account` must be executed successfully before any fetch/publish action.
+
+`use account` argument format:
+
+- `<platform:account_id>`
+- `account_id` should be selected from `mediause auth list --json`.
+
+For Reddit skill, always use visible mode with `--show`.
+
+```powershell
+mediause auth list --json
+mediause use account reddit:<account_id> --policy balanced --show --json
+```
+
+### 3.3 Auth health precondition
+
+`auth health` is valid only after successful `use account`.
+
+```powershell
+mediause auth health --json
+```
+
+If `auth health` indicates not logged in/expired:
+
+```powershell
+mediause auth login reddit --json
+mediause use account reddit:<account_id> --policy balanced --show --json
+mediause auth health --json
+```
+
+If page shows `unusual traffic`, captcha, or risk confirmation:
+
+```powershell
+mediause use account reddit:<account_id> --policy balanced --show --json
+```
+
+Complete verification manually, then rerun the action.
+
+### 3.4 Guest mode (optional)
+
+Manifest default account id is `guest`. Guest mode can be used for read-only actions when runtime allows:
+
+```powershell
+mediause use account reddit:guest --show --json
+```
+
+Guest mode rules:
+
+- Read-only operations (`account/get/search/read/user/collection` fetch intents).
+- Block write operations (`engage.comment`, `engage.save`, `engage.upvote`, `engage.subscribe`).
+- If write is required, switch to a logged-in account context.
+
+## 4. Reddit Dynamic Command Map (v1)
+
+Source schema:
+
+- plugin: `plugin.reddit`
+- manifest: `crates/platforms/plugins/reddit/manifest.yaml`
+
+### 4.1 account.*
+
+- `mediause reddit account health --json`
+
+### 4.2 get.*
+
+- `mediause reddit get hot [--subreddit <name>] [--limit <n>] --json`
+- `mediause reddit get popular [--limit <n>] --json`
+- `mediause reddit get frontpage [--limit <n>] --json`
+- `mediause reddit get subreddit --name <subreddit> [--sort <sort>] [--time <time>] [--limit <n>] --json`
+
+### 4.3 search.*
+
+- `mediause reddit search posts --query <query> [--subreddit <name>] [--sort <sort>] [--time <time>] [--limit <n>] --json`
+
+### 4.4 read.*
+
+- `mediause reddit read item --post-id <post_id> [--sort <sort>] [--limit <n>] [--depth <n>] [--replies <n>] [--max-length <n>] --json`
+
+### 4.5 user.*
+
+- `mediause reddit user profile --username <username> --json`
+- `mediause reddit user posts --username <username> [--limit <n>] --json`
+- `mediause reddit user comments --username <username> [--limit <n>] --json`
+
+### 4.6 collection.*
+
+- `mediause reddit collection saved [--limit <n>] --json`
+- `mediause reddit collection upvoted [--limit <n>] --json`
+
+### 4.7 engage.*
+
+- `mediause reddit engage comment --post-id <post_id> --text <text> --json`
+- `mediause reddit engage save --post-id <post_id> [--undo <bool>] --json`
+- `mediause reddit engage upvote --post-id <post_id> [--direction <up|down|none>] --json`
+- `mediause reddit engage subscribe --subreddit <name> [--undo <bool>] --json`
+
+## 5. Operational Constraints (Mandatory)
+
+Apply these constraints for all actions to reduce account risk and keep behavior human-like.
+
+### 5.1 Human-like pacing
+
+- Never execute high-risk actions continuously.
+- Add randomized delay between actions.
+- Add longer cooldown after write actions.
+- Mix read actions between write actions when possible.
+
+### 5.2 Frequency limits and minimum spacing
+
+- Hard stop if operation rate is abnormally high.
+- Stop immediately on repeated anti-bot challenge, login re-validation, or risk prompt.
+- Do not run burst comment/upvote loops.
+
+Suggested limits:
+
+- Engage write actions: <= 30 per hour
+- Search/get/read/user/collection actions: <= 60 per minute
+
+Minimum spacing:
+
+- `engage.comment`: >= 30 seconds
+- `engage.save` / `engage.upvote` / `engage.subscribe`: >= 10 seconds
+- Read/search/get/user/collection: >= 1 second
+
+Same-target guardrails:
+
+- Repeated interaction on same `post_id` or subreddit: >= 60 seconds
+- Repeated identical comment text: >= 24 hours (default deny)
+
+If a limit is hit:
+
+1. Pause at least 15 minutes.
+2. Resume with read-only actions first.
+3. Re-check session health before any write action.
+
+### 5.3 Safety policy
+
+- Do not bypass platform protections.
+- Do not attempt credential scraping or session hijacking.
+- Respect platform terms and local regulations.
+
+### 5.4 Output and error handling
+
+- Prefer `--json` output for machine workflows.
+- Require structured error handling with stable fields/code when available.
+- On blocked/rate-limit/risk prompt, stop and return actionable next steps.
+
+## 6. Workflow Examples
+
+### 6.1 Discovery and thread reading
+
+```powershell
+mediause use account reddit:<account_id> --show --json
+mediause auth health --json
+mediause reddit get popular --limit 20 --json
+mediause reddit read item --post-id <post_id> --limit 30 --depth 3 --json
+mediause trace last --json
+```
+
+### 6.2 Subreddit monitoring
+
+```powershell
+mediause use account reddit:<account_id> --show --json
+mediause auth health --json
+mediause reddit get subreddit --name "rust" --sort new --limit 20 --json
+mediause reddit search posts --query "async" --subreddit "rust" --limit 10 --json
+mediause trace last --json
+```
+
+### 6.3 Engagement workflow
+
+```powershell
+mediause use account reddit:<account_id> --show --json
+mediause auth health --json
+mediause reddit engage upvote --post-id <post_id> --direction up --json
+mediause reddit engage comment --post-id <post_id> --text "Thanks for sharing" --json
+mediause trace last --json
+```
+
+## 7. Execution Checklist
+
+Before run:
+
+1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
+2. PATH updated and `mediause --version` works.
+3. API key configured and verified.
+4. Account context bound via `mediause use account reddit:<account_id> --show --json`.
+5. If write actions are required, ensure logged-in account context is active.
+6. Be ready to complete manual verification in the visible browser.
+7. Pacing policy is enabled.
+
+During run:
+
+1. Respect delays and minimum spacing.
+2. Stop on anti-bot/risk prompts.
+3. Avoid repetitive burst loops.
+
+After run:
+
+1. Save logs and outcomes.
+2. Record any risk warning and cooldown events.
+3. Keep activity under conservative limits.
+
+## 8. Quick Command Reference
+
+```powershell
+# discover
+mediause plugin list --json
+mediause plugin add reddit --json
+mediause reddit -h
+mediause reddit get -h
+
+# context + status (show required)
+mediause auth list --json
+mediause use account reddit:<account_id> --show --json
+mediause auth health --json
+
+# read actions
+mediause reddit account health --json
+mediause reddit get hot --subreddit "technology" --limit 20 --json
+mediause reddit get popular --limit 20 --json
+mediause reddit search posts --query "browser automation" --limit 10 --json
+mediause reddit read item --post-id <post_id> --limit 20 --json
+mediause reddit user profile --username <username> --json
+mediause reddit collection saved --limit 20 --json
+
+# write actions
+mediause reddit engage upvote --post-id <post_id> --direction up --json
+mediause reddit engage save --post-id <post_id> --json
+mediause reddit engage subscribe --subreddit "technology" --json
+mediause reddit engage comment --post-id <post_id> --text "Nice thread" --json
+
+# trace
+mediause trace last --json
+```
+
+Skill Metadata
+Maintainer: @mediause-demo
+Last-Updated: 2026-05-11
+Version: v1
