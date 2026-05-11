@@ -1,5 +1,5 @@
 ---
-name: mediause-reddit
+name: reddit
 description: Standardized Reddit skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Reddit dynamic command map, and safety/rate controls.
 ---
 
@@ -123,7 +123,7 @@ Complete verification manually, then rerun the action.
 
 ### 3.4 Guest mode (optional)
 
-Manifest default account id is `guest`. Guest mode can be used for read-only actions when runtime allows:
+Manifest default account id is `guest`. Guest mode can be used only for read-only actions when the runtime supports unauthenticated `reddit:guest` context (that is, `mediause use account reddit:guest --show --json` succeeds):
 
 ```powershell
 mediause use account reddit:guest --show --json
@@ -196,21 +196,13 @@ Apply these constraints for all actions to reduce account risk and keep behavior
 - Stop immediately on repeated anti-bot challenge, login re-validation, or risk prompt.
 - Do not run burst comment/upvote loops.
 
-Suggested limits:
+Quick policy matrix:
 
-- Engage write actions: <= 30 per hour
-- Search/get/read/user/collection actions: <= 60 per minute
-
-Minimum spacing:
-
-- `engage.comment`: >= 30 seconds
-- `engage.save` / `engage.upvote` / `engage.subscribe`: >= 10 seconds
-- Read/search/get/user/collection: >= 1 second
-
-Same-target guardrails:
-
-- Repeated interaction on same `post_id` or subreddit: >= 60 seconds
-- Repeated identical comment text: >= 24 hours (default deny)
+- `engage.comment`: <= 30/hour, >= 30s spacing
+- `engage.save` / `engage.upvote` / `engage.subscribe`: <= 30/hour, >= 10s spacing
+- `search/get/read/user/collection`: <= 60/min, >= 1s spacing
+- same target (`post_id` / subreddit): >= 60s between repeated interactions
+- same comment text: >= 24h (default deny)
 
 If a limit is hit:
 

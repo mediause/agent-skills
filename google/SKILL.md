@@ -1,5 +1,5 @@
 ---
-name: mediause-google
+name: google
 description: Standardized Google skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Google dynamic command map, and safety/rate controls.
 ---
 

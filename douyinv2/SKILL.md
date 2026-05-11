@@ -1,5 +1,5 @@
 ---
-name: mediause-douyinv2
+name: douyinv2
 description: Standardized douyinv2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full douyinv2 dynamic command map, and safety/rate controls.
 ---
 

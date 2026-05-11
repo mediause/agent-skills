@@ -1,5 +1,5 @@
 ---
-name: mediause-xiaohongshu
+name: xiaohongshu
 description: Standardized Xiaohongshu skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Xiaohongshu dynamic command map, and safety/rate controls.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: mediause-hackernews
+name: hackernews
 description: Use when handling MediaUse Hacker News automation tasks, including story list retrieval, story search, item thread reading, and user profile lookup, with Windows install, key onboarding, strict context/auth flow, full dynamic command map, and safety/rate controls.
 ---
 
