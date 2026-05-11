@@ -1,9 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-11T11:37:09.043Z",
+  "generatedAt": "2026-05-11T11:50:42.925Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
+    {
+      "pluginName": "chatgpt",
+      "slug": "chatgpt",
+      "title": "MediaUse ChatGPT Skill",
+      "summary": "This skill defines the standardized workflow for running ChatGPT automation through MediaUse.",
+      "frontmatterName": "chatgpt",
+      "description": "Standardized ChatGPT skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full ChatGPT dynamic command map, and safety/rate controls.",
+      "sourcePath": "chatgpt/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/chatgpt/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/chatgpt/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-05-11",
+      "version": "v1"
+    },
     {
       "pluginName": "douyinv2",
       "slug": "douyinv2",
