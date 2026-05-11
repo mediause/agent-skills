@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-11T02:34:18.812Z",
+  "sourceRepo": "https://github.com/mediause/agent-skills",
+  "mappingKey": "pluginName",
+  "skills": [
+    {
+      "pluginName": "hackernews",
+      "slug": "hackernews",
+      "title": "MediaUse Hacker News Skill",
+      "summary": "This skill defines the standardized workflow for running Hacker News automation through MediaUse.",
+      "frontmatterName": "mediause-hackernews",
+      "description": "Use when handling MediaUse Hacker News automation tasks, including story list retrieval, story search, item thread reading, and user profile lookup, with Windows install, key onboarding, strict context/auth flow, full dynamic command map, and safety/rate controls.",
+      "sourcePath": "hackernews/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/hackernews/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/hackernews/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-05-07",
+      "version": "v1"
+    },
+    {
+      "pluginName": "weibov2",
+      "slug": "weibov2",
+      "title": "MediaUse weibov2 Skill",
+      "summary": "This skill defines the standardized workflow for running weibov2 automation through MediaUse.",
+      "frontmatterName": "mediause-weibov2",
+      "description": "Standardized weibov2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full weibov2 dynamic command map, and safety/rate controls.",
+      "sourcePath": "weibov2/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/weibov2/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/weibov2/SKILL.md",
+      "maintainer": null,
+      "lastUpdated": "2026-05-11T02:34:18.762Z",
+      "version": null
+    },
+    {
+      "pluginName": "xiaohongshu",
+      "slug": "xiaohongshu",
+      "title": "MediaUse Xiaohongshu Skill",
+      "summary": "This skill defines the standardized workflow for running Xiaohongshu automation through MediaUse.",
+      "frontmatterName": "mediause-xiaohongshu",
+      "description": "Standardized Xiaohongshu skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Xiaohongshu dynamic command map, and safety/rate controls.",
+      "sourcePath": "xiaohongshu/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/xiaohongshu/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/xiaohongshu/SKILL.md",
+      "maintainer": null,
+      "lastUpdated": "2026-05-07T19:46:42+08:00",
+      "version": null
+    }
+  ]
+}
