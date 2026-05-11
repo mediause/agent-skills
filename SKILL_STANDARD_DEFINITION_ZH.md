@@ -135,16 +135,16 @@ mediause plugin list --json
 mediause plugin add weibo --json
 mediause weibo -h
 mediause weibo post -h
-mediause use account weibo:main --policy balanced --json
+mediause use account weibo:<account_id> --policy balanced --json
 mediause auth health --json
 mediause auth login weibo --json
-mediause use account weibo:main --policy balanced --json
+mediause use account weibo:<account_id> --policy balanced --json
 mediause auth health --json
 mediause weibo search hot --json
 mediause trace last --json
 
 # 若遇到 unusual traffic 或验证码，可显示浏览器人工处理
-mediause use account weibo:main --policy balanced --show --json
+mediause use account weibo:<account_id> --policy balanced --show --json
 
 # guest 模式（仅当站点支持）
 mediause use account weibo:guest --json
@@ -195,7 +195,7 @@ guest 支持规范：
 ```powershell
 # A1. 登录与上下文
 mediause auth login weibo --json
-mediause use account weibo:main --json
+mediause use account weibo:<account_id> --json
 
 # A2. 获取热点
 mediause weibo search hot --json
@@ -210,7 +210,7 @@ mediause trace last --json
 ### 4.2 Workflow B：监控 + 互动闭环
 
 ```powershell
-mediause use account weibo:main --json
+mediause use account weibo:<account_id> --json
 mediause weibo get notif --type mention --json
 mediause weibo reply comment --post-id <id> --text "收到，感谢" --json
 mediause trace last --json
@@ -219,7 +219,7 @@ mediause trace last --json
 ### 4.3 Workflow C：用户运营
 
 ```powershell
-mediause use account weibo:main --json
+mediause use account weibo:<account_id> --json
 mediause weibo user followers --user-id <uid> --limit 20 --json
 mediause weibo engage follow --user-id <uid> --json
 mediause trace last --json

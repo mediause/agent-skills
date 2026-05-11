@@ -104,7 +104,7 @@ If `auth health` indicates not logged in/expired for a non-guest account:
 
 ```powershell
 mediause auth login hackernews --json
-mediause use account hackernews:main --policy balanced --json
+mediause use account hackernews:<account_id> --policy balanced --json
 mediause auth health --json
 ```
 

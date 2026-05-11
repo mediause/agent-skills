@@ -91,7 +91,7 @@ mediause weibov2 post -h
 
 ```powershell
 mediause auth list --json
-mediause use account weibov2:main --policy balanced --json
+mediause use account weibov2:<account_id> --policy balanced --json
 ```
 
 ### 3.3 Auth health precondition
@@ -106,7 +106,7 @@ If `auth health` indicates not logged in/expired:
 
 ```powershell
 mediause auth login weibov2 --json
-mediause use account weibov2:main --policy balanced --json
+mediause use account weibov2:<account_id> --policy balanced --json
 mediause auth health --json
 ```
 
@@ -234,7 +234,7 @@ If a limit is hit:
 ### 6.1 Hot-topic to publish
 
 ```powershell
-mediause use account weibov2:main --json
+mediause use account weibov2:<account_id> --json
 mediause auth health --json
 mediause weibov2 search hot --json
 mediause weibov2 post feed --text "<draft_text>" --media c:/tmp/a.png --json
@@ -244,7 +244,7 @@ mediause trace last --json
 ### 6.2 Monitor and engage
 
 ```powershell
-mediause use account weibov2:main --json
+mediause use account weibov2:<account_id> --json
 mediause auth health --json
 mediause weibov2 get notif --type mention --json
 mediause weibov2 reply comment --post-id <id> --text "received" --json
@@ -296,7 +296,7 @@ mediause weibov2 post -h
 
 # context + status
 mediause auth list --json
-mediause use account weibov2:main --json
+mediause use account weibov2:<account_id> --json
 mediause auth health --json
 
 # read action
@@ -308,3 +308,4 @@ mediause weibov2 post feed --text "hello" --json
 # trace
 mediause trace last --json
 ```
+

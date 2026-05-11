@@ -92,7 +92,7 @@ mediause xiaohongshu post -h
 
 ```powershell
 mediause auth list --json
-mediause use account xiaohongshu:main --policy balanced --json
+mediause use account xiaohongshu:<account_id> --policy balanced --json
 ```
 
 ### 3.3 Auth health precondition
@@ -107,7 +107,7 @@ If `auth health` indicates not logged in/expired:
 
 ```powershell
 mediause auth login xiaohongshu --json
-mediause use account xiaohongshu:main --policy balanced --json
+mediause use account xiaohongshu:<account_id> --policy balanced --json
 mediause auth health --json
 ```
 
@@ -248,7 +248,7 @@ If a limit is hit:
 ### 6.1 Hot-topic to publish
 
 ```powershell
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu search hot --json
 mediause xiaohongshu post feed --title "今日推荐" --text "<draft_text>" --media c:/tmp/a.png,c:/tmp/b.png --json
@@ -258,7 +258,7 @@ mediause trace last --json
 ### 6.1.1 Video publish with cover
 
 ```powershell
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu post feed --title "2026穿搭" --text "今日分享" --media c:/tmp/a.mp4 --cover c:/tmp/cover.png --json
 mediause trace last --json
@@ -267,7 +267,7 @@ mediause trace last --json
 ### 6.1.2 Long article publish
 
 ```powershell
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu post feed --title "2026穿搭" --text "今日分享" --json
 mediause trace last --json
@@ -276,7 +276,7 @@ mediause trace last --json
 ### 6.2 Monitor and engage
 
 ```powershell
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu get notif --type mention --json
 mediause xiaohongshu reply comment --post-id <id> --text "received" --json
@@ -286,7 +286,7 @@ mediause trace last --json
 ### 6.3 Note boost flow
 
 ```powershell
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu note boost --note-id <note_id> --json
 mediause xiaohongshu manage task --task note.boost --note-id <note_id> --json
@@ -338,7 +338,7 @@ mediause xiaohongshu post -h
 
 # context + status
 mediause auth list --json
-mediause use account xiaohongshu:main --json
+mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 
 # read action
@@ -350,3 +350,4 @@ mediause xiaohongshu post feed --title "hello" --text "hello" --json
 # trace
 mediause trace last --json
 ```
+
