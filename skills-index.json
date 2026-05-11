@@ -1,9 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-11T04:41:09.468Z",
+  "generatedAt": "2026-05-11T09:50:24.549Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
+    {
+      "pluginName": "douyinv2",
+      "slug": "douyinv2",
+      "title": "MediaUse Douyinv2 Skill",
+      "summary": "This skill defines the standardized workflow for running Douyinv2 creator automation through MediaUse.",
+      "frontmatterName": "mediause-douyinv2",
+      "description": "Standardized douyinv2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full douyinv2 dynamic command map, and safety/rate controls.",
+      "sourcePath": "douyinv2/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/douyinv2/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/douyinv2/SKILL.md",
+      "maintainer": "@mediause-demo",
+      "lastUpdated": "2026-05-11",
+      "version": "v1"
+    },
     {
       "pluginName": "google",
       "slug": "google",
@@ -43,7 +57,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/weibov2/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/weibov2/SKILL.md",
       "maintainer": null,
-      "lastUpdated": "2026-05-11T10:43:14+08:00",
+      "lastUpdated": "2026-05-11T17:48:20+08:00",
       "version": null
     },
     {
@@ -57,7 +71,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/xiaohongshu/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/xiaohongshu/SKILL.md",
       "maintainer": null,
-      "lastUpdated": "2026-05-07T19:46:42+08:00",
+      "lastUpdated": "2026-05-11T17:48:20+08:00",
       "version": null
     }
   ]
