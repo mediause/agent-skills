@@ -309,3 +309,7 @@ mediause weibov2 post feed --text "hello" --json
 mediause trace last --json
 ```
 
+Skill Metadata
+Maintainer: @mediause-demo
+Last-Updated: 2026-05-11
+Version: v2

@@ -285,6 +285,6 @@ mediause trace last --json
 ```
 
 Skill Metadata
-Maintainer: @mediause-team
+Maintainer: @mediause-demo
 Last-Updated: 2026-05-11
 Version: v1
