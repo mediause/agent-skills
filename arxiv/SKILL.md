@@ -105,7 +105,7 @@ Not required for guest mode. Skip this step for arXiv.
 
 ## 4. arXiv Dynamic Command Map (v1)
 
-Source: OpenCLI `clis/arxiv/` — public arXiv Atom API, no key required.
+public arXiv API plugin with guest default account and read-only commands.
 
 ### 4.1 account.health
 
@@ -335,11 +335,8 @@ mediause trace last --json
 mediause task status --task-id <id> --json
 ```
 
-## 8. Metadata
 
-- plugin: `arxiv`
-- access: read-only (public API, no key required)
-- guest support: yes (only mode)
-- maintainer: @mediause-demo
-- version: v1
-- last updated: 2026-05-12
+Skill Metadata
+Maintainer: @mediause-demo
+Last-Updated: 2026-05-12
+Version: v1
