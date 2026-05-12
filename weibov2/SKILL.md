@@ -5,7 +5,7 @@ description: Standardized weibov2 skill for MediaUse. Includes Windows install, 
 
 # MediaUse weibov2 Skill
 
-This skill defines the standardized workflow for running weibov2 automation through MediaUse.
+Execute weibov2 social workflows with guided auth context, dynamic command routing, and safe pacing controls.
 
 ## Scope
 

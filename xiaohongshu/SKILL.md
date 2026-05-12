@@ -5,7 +5,7 @@ description: Standardized Xiaohongshu skill for MediaUse. Includes Windows insta
 
 # MediaUse Xiaohongshu Skill
 
-This skill defines the standardized workflow for running Xiaohongshu automation through MediaUse.
+Create and operate Xiaohongshu content workflows with consistent setup, context handling, command execution, and compliance guardrails.
 
 ## Scope
 

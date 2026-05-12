@@ -5,7 +5,7 @@ description: Standardized douyinv2 skill for MediaUse. Includes Windows install,
 
 # MediaUse Douyinv2 Skill
 
-This skill defines the standardized workflow for running Douyinv2 creator automation through MediaUse.
+Operate Douyinv2 creator tasks with a structured login, context binding, and command map for publishing and account operations.
 
 ## Scope
 

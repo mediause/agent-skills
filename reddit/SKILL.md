@@ -5,7 +5,7 @@ description: Standardized Reddit skill for MediaUse. Includes Windows install, k
 
 # MediaUse Reddit Skill
 
-This skill defines the standardized workflow for running Reddit automation through MediaUse.
+Handle Reddit monitoring and interaction with standardized flows for feeds, search, thread reads, profile views, and engagement actions.
 
 ## Scope
 

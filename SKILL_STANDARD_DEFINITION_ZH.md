@@ -330,7 +330,7 @@ allowed-tools: Bash(MediaUse:*)
 
 生成流程建议：
 
-1. 读取目标站点 commands.json。
+1. 读取目标站点 manifest.yaml
 2. 抽取 capability/action/args 与 risk_level。
 3. 自动填充 Skill 模板的 Site Commands 与 Workflow 示例。
 4. 注入统一 Guardrails（反垃圾 + 频控 + 合规）。
@@ -345,7 +345,22 @@ allowed-tools: Bash(MediaUse:*)
 ## 9. 最小验收清单（Definition of Done）
 
 - 包含安装、key、core 流程、workflow、约束 5 大部分。
-- 所有站点动作均来自对应 commands.json。
+- 所有站点动作均来自对应 manifest.yaml
 - 至少提供 2 个端到端 workflow。
 - 明确频率限制与反 spam 规则。
 - 示例命令可直接运行（建议均提供 --json）。
+
+## Required fields:
+
+- Maintainer: <name or handle>
+- Last-Updated: <YYYY-MM-DD>
+- Version: <skill version, for example v1>
+
+Recommended block format:
+
+```text
+Skill Metadata
+Maintainer: @your-handle
+Last-Updated: 2026-04-23
+Version: v1
+```

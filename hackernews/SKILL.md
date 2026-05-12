@@ -5,7 +5,7 @@ description: Use when handling MediaUse Hacker News automation tasks, including 
 
 # MediaUse Hacker News Skill
 
-This skill defines the standardized workflow for running Hacker News automation through MediaUse.
+Track Hacker News stories and discussions through a clean workflow for lists, search, thread reading, and user inspection.
 
 ## Scope
 

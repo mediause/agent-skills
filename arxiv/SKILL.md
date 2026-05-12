@@ -5,7 +5,7 @@ description: Standardized arXiv skill for MediaUse. Includes Windows install, ke
 
 # MediaUse arXiv Skill
 
-This skill defines the standardized workflow for running arXiv paper discovery through MediaUse.
+Discover arXiv research with a guest-only workflow for paper search, category recents, author lookups, and detailed paper retrieval.
 
 ## Scope
 

@@ -5,7 +5,7 @@ description: Standardized ChatGPT skill for MediaUse. Includes Windows install, 
 
 # MediaUse ChatGPT Skill
 
-This skill defines the standardized workflow for running ChatGPT automation through MediaUse.
+Use this skill to run structured ChatGPT workflows in MediaUse, including conversation control, prompt/response retrieval, and image generation with safe execution pacing.
 
 ## Scope
 

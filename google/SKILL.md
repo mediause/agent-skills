@@ -5,7 +5,7 @@ description: Standardized Google skill for MediaUse. Includes Windows install, k
 
 # MediaUse Google Skill
 
-This skill defines the standardized workflow for running Google search and discovery automation through MediaUse.
+Run Google discovery flows for keyword exploration, result retrieval, and repeatable read-first research workflows.
 
 ## Scope
 
