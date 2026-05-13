@@ -1,4 +1,4 @@
----
+﻿---
 name: arxiv
 description: Standardized arXiv skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full arXiv dynamic command map, and safety/rate controls.
 ---
@@ -31,7 +31,7 @@ Run:
 powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 ```
 
-Then verify in the same shell:
+Then verify :
 
 ```powershell
 mediause --version

@@ -1,4 +1,4 @@
----
+﻿---
 name: chatgpt
 description: Standardized ChatGPT skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full ChatGPT dynamic command map, and safety/rate controls.
 ---
@@ -27,7 +27,7 @@ Run:
 powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 ```
 
-Then verify in the same shell:
+Then verify :
 
 ```powershell
 mediause --version

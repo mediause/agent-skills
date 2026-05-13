@@ -35,7 +35,7 @@ Run:
 powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 ```
 
-Then verify in the same shell:
+Then verify :
 
 ```powershell
 mediause --version

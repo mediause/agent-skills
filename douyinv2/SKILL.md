@@ -1,4 +1,4 @@
----
+﻿---
 name: douyinv2
 description: Standardized douyinv2 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full douyinv2 dynamic command map, and safety/rate controls.
 ---
@@ -29,7 +29,7 @@ Run:
 powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 ```
 
-Then verify in the same shell:
+Then verify :
 
 ```powershell
 mediause --version
