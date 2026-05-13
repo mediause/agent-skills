@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-13T12:49:37.770Z",
+  "generatedAt": "2026-05-13T14:35:20.510Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -16,6 +16,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/arxiv/SKILL.md",
       "maintainer": "@mediause-demo",
       "lastUpdated": "2026-05-12",
+      "version": "v1"
+    },
+    {
+      "pluginName": "bloomberg",
+      "slug": "bloomberg",
+      "title": "MediaUse Bloomberg Skill",
+      "summary": "Use this skill to read Bloomberg RSS feeds and parse Bloomberg article pages with a consistent MediaUse workflow.",
+      "frontmatterName": "bloomberg",
+      "description": "Standardized Bloomberg skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Bloomberg dynamic command map, and safety/rate controls.",
+      "sourcePath": "bloomberg/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/bloomberg/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/bloomberg/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-05-13",
       "version": "v1"
     },
     {
