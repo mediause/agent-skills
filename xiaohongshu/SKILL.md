@@ -351,3 +351,8 @@ mediause xiaohongshu post feed --title "hello" --text "hello" --json
 mediause trace last --json
 ```
 
+Skill Metadata
+Maintainer: @mediause-demo
+Last-Updated: 2026-05-13
+Version: v1
+

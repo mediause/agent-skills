@@ -11,7 +11,7 @@ const ignoredEntries = new Set([".git", ".github", "scripts"])
 const execFileAsync = promisify(execFile)
 
 function parseFrontmatter(content) {
-  const normalizedContent = content.replace(/\r\n/g, "\n")
+  const normalizedContent = content.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n")
 
   if (!normalizedContent.startsWith("---\n")) {
     return { data: {}, body: content }
@@ -68,6 +68,9 @@ function extractSummary(markdownBody, fallbackSummary) {
     if (line.startsWith("-") || line.startsWith("*") || /^\d+\./.test(line)) {
       continue
     }
+    if (/^(name|description|summary|maintainer|last[- ]updated|version)\s*:/i.test(line)) {
+      continue
+    }
     return line
   }
 
@@ -75,9 +78,9 @@ function extractSummary(markdownBody, fallbackSummary) {
 }
 
 function extractMaintainerMetadata(markdownBody) {
-  const maintainer = markdownBody.match(/^Maintainer:\s*(.+)$/m)?.[1]?.trim()
-  const lastUpdated = markdownBody.match(/^Last-Updated:\s*(.+)$/m)?.[1]?.trim()
-  const version = markdownBody.match(/^Version:\s*(.+)$/m)?.[1]?.trim()
+  const maintainer = markdownBody.match(/^\s*(?:[-*]\s*)?Maintainer:\s*(.+)$/im)?.[1]?.trim()
+  const lastUpdated = markdownBody.match(/^\s*(?:[-*]\s*)?Last-Updated:\s*(.+)$/im)?.[1]?.trim()
+  const version = markdownBody.match(/^\s*(?:[-*]\s*)?Version:\s*(.+)$/im)?.[1]?.trim()
 
   return {
     maintainer: maintainer || null,
@@ -131,7 +134,7 @@ async function collectSkills() {
       const { data, body } = parseFrontmatter(rawContent)
       const pluginName = entry.name
       const titleFallback = data.name || pluginName
-      const summaryFallback = data.description || ""
+      const summaryFallback = data.summary || data.description || ""
       const metadata = extractMaintainerMetadata(body)
       const lastUpdated = await resolveLastUpdated(pluginName, metadata.lastUpdated)
 
@@ -145,9 +148,9 @@ async function collectSkills() {
         sourcePath: `${pluginName}/SKILL.md`,
         repoUrl: `${repoUrl}/blob/main/${pluginName}/SKILL.md`,
         rawUrl: `${rawBaseUrl}/${pluginName}/SKILL.md`,
-        maintainer: metadata.maintainer,
+        maintainer: data.maintainer || metadata.maintainer,
         lastUpdated,
-        version: metadata.version,
+        version: data.version || metadata.version,
       })
     } catch {
       continue
