@@ -149,6 +149,33 @@ function Resolve-AssetForPlatform {
   return $asset
 }
 
+function Compare-SemVer {
+  # Returns: negative if A < B, 0 if A == B, positive if A > B
+  param([string]$A, [string]$B)
+
+  $aParts = $A -split '-', 2
+  $bParts = $B -split '-', 2
+  $aCore = $aParts[0]
+  $aPre  = if ($aParts.Count -gt 1) { $aParts[1] } else { "" }
+  $bCore = $bParts[0]
+  $bPre  = if ($bParts.Count -gt 1) { $bParts[1] } else { "" }
+
+  try {
+    $aVer = [System.Version]$aCore
+    $bVer = [System.Version]$bCore
+    $cmp = $aVer.CompareTo($bVer)
+    if ($cmp -ne 0) { return $cmp }
+  } catch {
+    $cmp = [string]::Compare($aCore, $bCore, [System.StringComparison]::OrdinalIgnoreCase)
+    if ($cmp -ne 0) { return $cmp }
+  }
+
+  # Core equal: release > pre-release (semver spec)
+  if ([string]::IsNullOrEmpty($aPre) -and -not [string]::IsNullOrEmpty($bPre)) { return 1 }
+  if (-not [string]::IsNullOrEmpty($aPre) -and [string]::IsNullOrEmpty($bPre)) { return -1 }
+  return [string]::Compare($aPre, $bPre, [System.StringComparison]::OrdinalIgnoreCase)
+}
+
 function Get-PathSegmentsLower {
   param([string]$PathValue)
 
@@ -235,8 +262,15 @@ try {
       Write-Host "Binary already exists: $targetFile"
       Write-Host "Local version matches latest ($version), skip download."
     } elseif ($installedVersion) {
-      Write-Host "Binary already exists: $targetFile"
-      Write-Host "Local version $installedVersion is older/different than latest $version, upgrading."
+      $cmp = Compare-SemVer -A $installedVersion -B $version
+      if ($cmp -ge 0) {
+        $shouldDownload = $false
+        Write-Host "Binary already exists: $targetFile"
+        Write-Host "Local version $installedVersion >= latest $version, skip download."
+      } else {
+        Write-Host "Binary already exists: $targetFile"
+        Write-Host "Local version $installedVersion < latest $version, upgrading."
+      }
     } else {
       Write-Host "Binary already exists but current version could not be detected, downloading latest."
     }
