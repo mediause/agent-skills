@@ -57,6 +57,107 @@ function Normalize-Version {
   return $Value.Trim().TrimStart("v")
 }
 
+function Parse-SemVer {
+  param([string]$Value)
+
+  $normalized = Normalize-Version -Value $Value
+  $match = [regex]::Match($normalized, '^(?<core>\d+(?:\.\d+){0,2})(?:-(?<pre>[0-9A-Za-z\.-]+))?(?:\+(?<build>[0-9A-Za-z\.-]+))?$')
+  if (-not $match.Success) {
+    return $null
+  }
+
+  $coreParts = @($match.Groups['core'].Value.Split('.'))
+  while ($coreParts.Count -lt 3) {
+    $coreParts += '0'
+  }
+
+  return [PSCustomObject]@{
+    Major = [int]$coreParts[0]
+    Minor = [int]$coreParts[1]
+    Patch = [int]$coreParts[2]
+    PreRelease = $match.Groups['pre'].Value
+  }
+}
+
+function Compare-SemVerIdentifiers {
+  param(
+    [string]$Left,
+    [string]$Right
+  )
+
+  $leftParts = @($Left.Split('.'))
+  $rightParts = @($Right.Split('.'))
+  $max = [Math]::Max($leftParts.Count, $rightParts.Count)
+
+  for ($i = 0; $i -lt $max; $i++) {
+    $l = if ($i -lt $leftParts.Count) { $leftParts[$i] } else { $null }
+    $r = if ($i -lt $rightParts.Count) { $rightParts[$i] } else { $null }
+
+    if ($null -eq $l -and $null -eq $r) { return 0 }
+    if ($null -eq $l) { return -1 }
+    if ($null -eq $r) { return 1 }
+
+    $lIsNum = $l -match '^\d+$'
+    $rIsNum = $r -match '^\d+$'
+
+    if ($lIsNum -and $rIsNum) {
+      $ln = [int]$l
+      $rn = [int]$r
+      if ($ln -lt $rn) { return -1 }
+      if ($ln -gt $rn) { return 1 }
+      continue
+    }
+
+    if ($lIsNum -and -not $rIsNum) { return -1 }
+    if (-not $lIsNum -and $rIsNum) { return 1 }
+
+    $cmp = [string]::CompareOrdinal($l, $r)
+    if ($cmp -lt 0) { return -1 }
+    if ($cmp -gt 0) { return 1 }
+  }
+
+  return 0
+}
+
+function Compare-NormalizedVersions {
+  param(
+    [string]$Installed,
+    [string]$Latest
+  )
+
+  $installedSemVer = Parse-SemVer -Value $Installed
+  $latestSemVer = Parse-SemVer -Value $Latest
+
+  if (-not $installedSemVer -or -not $latestSemVer) {
+    return [string]::CompareOrdinal((Normalize-Version -Value $Installed), (Normalize-Version -Value $Latest))
+  }
+
+  if ($installedSemVer.Major -ne $latestSemVer.Major) {
+    return [Math]::Sign($installedSemVer.Major - $latestSemVer.Major)
+  }
+  if ($installedSemVer.Minor -ne $latestSemVer.Minor) {
+    return [Math]::Sign($installedSemVer.Minor - $latestSemVer.Minor)
+  }
+  if ($installedSemVer.Patch -ne $latestSemVer.Patch) {
+    return [Math]::Sign($installedSemVer.Patch - $latestSemVer.Patch)
+  }
+
+  $installedPre = $installedSemVer.PreRelease
+  $latestPre = $latestSemVer.PreRelease
+
+  if ([string]::IsNullOrWhiteSpace($installedPre) -and [string]::IsNullOrWhiteSpace($latestPre)) {
+    return 0
+  }
+  if ([string]::IsNullOrWhiteSpace($installedPre)) {
+    return 1
+  }
+  if ([string]::IsNullOrWhiteSpace($latestPre)) {
+    return -1
+  }
+
+  return Compare-SemVerIdentifiers -Left $installedPre -Right $latestPre
+}
+
 function Get-InstalledBinaryVersion {
   param([string]$BinaryPath)
 
@@ -149,33 +250,6 @@ function Resolve-AssetForPlatform {
   return $asset
 }
 
-function Compare-SemVer {
-  # Returns: negative if A < B, 0 if A == B, positive if A > B
-  param([string]$A, [string]$B)
-
-  $aParts = $A -split '-', 2
-  $bParts = $B -split '-', 2
-  $aCore = $aParts[0]
-  $aPre  = if ($aParts.Count -gt 1) { $aParts[1] } else { "" }
-  $bCore = $bParts[0]
-  $bPre  = if ($bParts.Count -gt 1) { $bParts[1] } else { "" }
-
-  try {
-    $aVer = [System.Version]$aCore
-    $bVer = [System.Version]$bCore
-    $cmp = $aVer.CompareTo($bVer)
-    if ($cmp -ne 0) { return $cmp }
-  } catch {
-    $cmp = [string]::Compare($aCore, $bCore, [System.StringComparison]::OrdinalIgnoreCase)
-    if ($cmp -ne 0) { return $cmp }
-  }
-
-  # Core equal: release > pre-release (semver spec)
-  if ([string]::IsNullOrEmpty($aPre) -and -not [string]::IsNullOrEmpty($bPre)) { return 1 }
-  if (-not [string]::IsNullOrEmpty($aPre) -and [string]::IsNullOrEmpty($bPre)) { return -1 }
-  return [string]::Compare($aPre, $bPre, [System.StringComparison]::OrdinalIgnoreCase)
-}
-
 function Get-PathSegmentsLower {
   param([string]$PathValue)
 
@@ -262,14 +336,17 @@ try {
       Write-Host "Binary already exists: $targetFile"
       Write-Host "Local version matches latest ($version), skip download."
     } elseif ($installedVersion) {
-      $cmp = Compare-SemVer -A $installedVersion -B $version
-      if ($cmp -ge 0) {
+      $cmp = Compare-NormalizedVersions -Installed $installedVersion -Latest $version
+      Write-Host "Binary already exists: $targetFile"
+
+      if ($cmp -lt 0) {
+        Write-Host "Local version $installedVersion is lower than latest $version, upgrading."
+      } elseif ($cmp -eq 0) {
         $shouldDownload = $false
-        Write-Host "Binary already exists: $targetFile"
-        Write-Host "Local version $installedVersion >= latest $version, skip download."
+        Write-Host "Local version matches latest ($version), skip download."
       } else {
-        Write-Host "Binary already exists: $targetFile"
-        Write-Host "Local version $installedVersion < latest $version, upgrading."
+        $shouldDownload = $false
+        Write-Host "Local version $installedVersion is newer than latest $version, skip download."
       }
     } else {
       Write-Host "Binary already exists but current version could not be detected, downloading latest."
