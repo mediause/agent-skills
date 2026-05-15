@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-14T16:45:20.232Z",
+  "generatedAt": "2026-05-15T16:03:23.995Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -86,6 +86,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/hackernews/SKILL.md",
       "maintainer": "@mediause-team",
       "lastUpdated": "2026-05-07",
+      "version": "v1"
+    },
+    {
+      "pluginName": "huggingface",
+      "slug": "huggingface",
+      "title": "MediaUse Hugging Face Skill",
+      "summary": "Use Hugging Face discovery workflows in MediaUse with a guest-only, no-login flow for papers, models, datasets, and spaces.",
+      "frontmatterName": "huggingface",
+      "description": "Standardized Hugging Face skill for MediaUse. Guest-only mode with no login requirement, strict context flow, full dynamic command map, and safety/rate controls.",
+      "sourcePath": "huggingface/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/huggingface/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/huggingface/SKILL.md",
+      "maintainer": "@mediause-demo",
+      "lastUpdated": "2026-05-16",
       "version": "v1"
     },
     {
