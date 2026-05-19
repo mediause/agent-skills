@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-15T16:03:23.995Z",
+  "generatedAt": "2026-05-19T16:07:10.152Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -58,6 +58,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/douyinv2/SKILL.md",
       "maintainer": "@mediause-demo",
       "lastUpdated": "2026-05-11",
+      "version": "v1"
+    },
+    {
+      "pluginName": "fifa2026",
+      "slug": "fifa2026",
+      "title": "MediaUse FIFA 2026 Skill",
+      "summary": "Use this skill to run FIFA 2026 data discovery workflows in MediaUse, including player lookup, team lookup, group lookup, and detailed stats retrieval.",
+      "frontmatterName": "fifa2026",
+      "description": "Standardized fifa2026 skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full fifa2026 dynamic command map, and safe read-oriented execution controls.",
+      "sourcePath": "fifa2026/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/fifa2026/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/fifa2026/SKILL.md",
+      "maintainer": "@mediause-demo",
+      "lastUpdated": "2026-05-20",
       "version": "v1"
     },
     {
