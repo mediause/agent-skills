@@ -18,6 +18,8 @@ Use this skill when the task targets `fifa2026` operations such as:
 - Get team details and roster preview
 - Get player recent match stats
 - Get team recent match stats
+- Compare two teams by ranking, form, and key players
+- Predict a match with structured probability output
 
 ## 1. Install MediaUse CLI (Windows Only)
 
@@ -80,6 +82,8 @@ mediause plugin add fifa2026 --json
 mediause fifa2026 -h
 mediause fifa2026 search -h
 mediause fifa2026 get -h
+mediause fifa2026 compare -h
+mediause fifa2026 predict -h
 ```
 
 ### 3.2 Bind context before commands
@@ -143,6 +147,29 @@ Source schema:
 - `mediause fifa2026 get team --url <url> [--player-limit <n>] --json`
 - `mediause fifa2026 get player-stats --url <url> [--limit <n>] --json`
 - `mediause fifa2026 get team-stats --url <url> [--limit <n>] --json`
+
+### 4.3 compare.*
+
+- `mediause fifa2026 compare teams --team_a_url <url> --team_b_url <url> [--competition_url <url>] [--recent_limit <n>] [--player_limit <n>] --json`
+
+`compare teams` parameter notes:
+
+- `team_a_url`, `team_b_url`: required squad URLs.
+- `competition_url`: optional competition context, defaults to World Cup stats page.
+- `recent_limit`: optional recent match window, default `10`.
+- `player_limit`: optional top player comparison depth, default `5`.
+
+### 4.4 predict.*
+
+- `mediause fifa2026 predict match --home_url <url> --away_url <url> [--competition_url <url>] [--recent_limit <n>] [--player_limit <n>] [--neutral_site <true|false>] --json`
+
+`predict match` parameter notes:
+
+- `home_url`, `away_url`: required squad URLs.
+- `competition_url`: optional ranking/group context URL.
+- `recent_limit`: optional form window size, default `10`.
+- `player_limit`: optional squad strength feature depth, default `5`.
+- `neutral_site`: optional venue flag, default `true`.
 
 ## 5. Operational Constraints (Mandatory)
 
@@ -222,6 +249,22 @@ mediause fifa2026 get player-stats --url <player_url> --limit 5 --json
 mediause trace last --json
 ```
 
+### 6.5 Team comparison
+
+```powershell
+mediause use account fifa2026:guest --json
+mediause fifa2026 compare teams --team_a_url <team_a_url> --team_b_url <team_b_url> --json
+mediause trace last --json
+```
+
+### 6.6 Match prediction
+
+```powershell
+mediause use account fifa2026:guest --json
+mediause fifa2026 predict match --home_url <home_team_url> --away_url <away_team_url> --neutral_site true --json
+mediause trace last --json
+```
+
 ## 7. Execution Checklist
 
 Before run:
@@ -253,6 +296,8 @@ mediause plugin add fifa2026 --json
 mediause fifa2026 -h
 mediause fifa2026 search -h
 mediause fifa2026 get -h
+mediause fifa2026 compare -h
+mediause fifa2026 predict -h
 
 # context + status
 mediause auth list --json
@@ -266,6 +311,8 @@ mediause fifa2026 search group --query "brazil" --json
 mediause fifa2026 search team --name "brazil" --json
 mediause fifa2026 get team --url <team_url> --json
 mediause fifa2026 get team-stats --url <team_url> --json
+mediause fifa2026 compare teams --team_a_url <team_a_url> --team_b_url <team_b_url> --json
+mediause fifa2026 predict match --home_url <home_team_url> --away_url <away_team_url> --json
 
 # trace
 mediause trace last --json
