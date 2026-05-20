@@ -1,107 +1,134 @@
-<img width="489" height="84" alt="ascii-text-art" src="https://github.com/user-attachments/assets/6ff8e2d9-6e15-4a7a-b33b-8e91148231ec" />
+
+<pre>
+███╗░░░███╗███████╗██████╗░██╗░█████╗░██╗░░░██╗░██████╗███████╗
+████╗░████║██╔════╝██╔══██╗██║██╔══██╗██║░░░██║██╔════╝██╔════╝
+██╔████╔██║█████╗░░██║░░██║██║███████║██║░░░██║╚█████╗░█████╗░░
+██║╚██╔╝██║██╔══╝░░██║░░██║██║██╔══██║██║░░░██║░╚═══██╗██╔══╝░░
+██║░╚═╝░██║███████╗██████╔╝██║██║░░██║╚██████╔╝██████╔╝███████╗
+╚═╝░░░░░╚═╝╚══════╝╚═════╝░╚═╝╚═╝░░╚═╝░╚═════╝░╚═════╝░╚══════╝
+</pre>
 
 # MediaUse Agent Skills
 
-This folder contains site-specific skills for MediaUse CLI automation.
+MediaUse is a general Web CLI infrastructure for AI agents. It combines a browser kernel, CDP execution, and site plugins so agents can call business-level actions such as `post.feed`, `search.hot`, and `get.detail` instead of repeatedly planning low-level page actions.
 
-These skills are designed to be compatible with:
+## What MediaUse Is
+
+MediaUse is designed for production web automation where repeatability, auditability, and account safety matter.
+
+Core ideas:
+
+- Semantic actions first: expose business outcomes, not click-by-click primitives
+- Pluginized site knowledge: selectors, constraints, and workflows are assets in plugins
+- CDP-native execution: deterministic browser execution without step-by-step vision loops
+- Unified interfaces: CLI, Skill, and MCP map to the same JSON-RPC action model
+
+In short: the agent decides what to do, MediaUse decides how to do it reliably on each site.
+
+## How Agents Use MediaUse
+
+The recommended integration flow is:
+
+1. Install the skill pack:
+	- `npx skills add mediause/agent-skills`
+2. Pick a site capability (for example, `weibov2 post feed`).
+3. Ensure account context is set (`mediause use account ...`) when login is required.
+4. Run one semantic action command with structured output (`--json`).
+5. Use returned result fields (`success`, `data`, error metadata, trace info) for next-step decisions.
+
+Typical command pattern:
+
+```bash
+mediause <site> <capability> <action> [args] --json
+```
+
+Examples:
+
+```bash
+mediause auth login weibov2
+mediause use account weibov2:main
+mediause weibov2 post feed --text "hello world" --json
+mediause xiaohongshu search hot --limit 20 --json
+mediause reddit get detail --url "https://www.reddit.com/..." --json
+```
+
+## How To Use The Skills In This Repository
+
+Each site skill is a standardized instruction document at `<pluginName>/SKILL.md`.
+
+These skills are intended to work consistently across agent runtimes such as:
 
 - Claude Code
 - Codex
 - OpenClaw
 - Cursor
 
-## Source of Truth
+Each skill defines:
 
-Use this standard document when creating or updating any skill:
+- Install and setup expectations
+- Account and auth flow requirements
+- Dynamic command map aligned to actual MediaUse CLI capability
+- Workflow examples with safe pacing and guardrails
 
-- SKILL_STANDARD_DEFINITION_ZH.md
+For authoring and updates, the canonical template is:
 
-All skills must follow the same structure, command flow, and safety constraints from that standard.
+- `SKILL_STANDARD_DEFINITION_ZH.md`
 
-## Folder Layout
+## Current Supported Sites
 
-- agent-skills/install.ps1: helper script for skill installation paths
-- agent-skills/SKILL_STANDARD_DEFINITION_ZH.md: canonical skill standard
-- agent-skills/<site>/SKILL.md: site skill document
-- agent-skills/skills-index.json: generated skill discovery index for downstream sync consumers
+The current skill set (from `skills-index.json`) includes:
 
-Examples:
+- arxiv
+- bloomberg
+- chatgpt
+- douyinv2
+- fifa2026
+- google
+- hackernews
+- huggingface
+- instagram
+- reddit
+- weibov2
+- xiaohongshu
 
-- agent-skills/weibov2/SKILL.md
-- agent-skills/xiaohongshu/SKILL.md
-- agent-skills/hackernews/SKILL.md
-- agent-skills/chatgpt/SKILL.md
+## Repository Contract
 
-## Compatibility Contract
+### Source Of Truth
 
-Every site skill must be executable in the same way across Claude Code, Codex, and OpenClaw:
+- Every site skill lives at `<pluginName>/SKILL.md`.
+- Folder name is the stable discovery key (`pluginName`).
+- `pluginId` is not part of this repository sync contract.
 
-1. Same CLI command syntax
-2. Same context/auth preconditions
-3. Same guardrails and rate limits
+### Sync Output
+
+- `skills-index.json` is generated and should not be edited manually.
+- Downstream consumers map and discover skills by `pluginName`.
+
+### Compatibility Contract
+
+All site skills must keep consistent behavior across agent environments:
+
+1. Same CLI syntax
+2. Same context and auth preconditions
+3. Same guardrails and pacing constraints
 4. Same error handling expectations
 
-Do not add agent-specific command variants in one skill file.
+Do not introduce runtime-specific command variants in one skill file.
 
-## How To Add a New Site Skill
+## Adding Or Updating A Site Skill
 
-When a new site plugin is added, you must add a matching skill in the same change set.
+When a new MediaUse site plugin is introduced, add the matching skill in the same change set.
 
-Required steps:
+Required process:
 
-1. Read agent-skills/SKILL_STANDARD_DEFINITION_ZH.md.
-2. Read the site command manifest from MediaUse CLI:
-   - ../plugins/<site>/commands.json
-3. Create skill file:
-   - agent-skills/<site>/SKILL.md
-4. Fill command map from commands.json only.
-5. Include standard sections:
-   - install
-   - key setup
-   - core flow (use account before auth health)
-   - dynamic command map
-   - workflow examples
-   - guardrails and timing limits
-6. Validate no command in skill exceeds actual CLI capability.
+1. Read `SKILL_STANDARD_DEFINITION_ZH.md`.
+2. Inspect the current command surface from the MediaUse CLI and plugin runtime (site help, runnable commands, and JSON outputs).
+3. Create or update `<pluginName>/SKILL.md`.
+4. Build the command map from currently supported CLI commands only.
+5. Keep workflow examples, guardrails, and timing constraints accurate.
+6. Ensure no skill command exceeds current CLI capability.
 
-## Mandatory Rule: Plugin + Skill Together
-
-For every newly introduced site plugin:
-
-- You must commit the site skill in the same PR/commit scope.
-- A plugin-only contribution is incomplete and should not be merged.
-
-Checklist:
-
-- New plugin path exists in CLI repo
-- Matching skill file exists in this repo
-- Command map is aligned with commands.json
-
-## Sync Output
-
-This repository generates `skills-index.json` as the sync artifact for downstream consumers.
-
-Sync contract:
-
-- Mapping key is `pluginName`
-- `pluginName` is derived from the skill folder name and must be unique
-- `pluginId` is not part of this repository sync contract
-- Downstream skill lists should read from `https://github.com/mediause/agent-skills`
-
-The index is regenerated by GitHub Actions on push and should not be edited manually.
-
-## Signature Requirement (Attribution)
-
-Each new or majorly updated site skill must include a maintainer attribution block at the end of SKILL.md.
-
-Required fields:
-
-- Maintainer: <name or handle>
-- Last-Updated: <YYYY-MM-DD>
-- Version: <skill version, for example v1>
-
-Recommended block format:
+Required attribution block at the end of each skill:
 
 ```text
 Skill Metadata
@@ -109,23 +136,3 @@ Maintainer: @your-handle
 Last-Updated: 2026-04-23
 Version: v1
 ```
-
-If attribution is missing, the skill is considered incomplete.
-
-## Update Policy
-
-When commands.json changes for a site:
-
-1. Update the corresponding agent-skills/<site>/SKILL.md.
-2. Update workflow examples if new capabilities are added.
-3. Keep guardrails and operation spacing constraints intact.
-
-## Review Quick Checks
-
-Before merge, verify:
-
-- The skill follows the standard definition doc
-- use account and auth health order is correct
-- guest mode behavior is clearly declared (supported or not)
-- examples use --json where automation is expected
-- attribution block is present
