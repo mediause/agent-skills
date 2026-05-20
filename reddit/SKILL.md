@@ -1,4 +1,4 @@
-﻿---
+---
 name: reddit
 description: Standardized Reddit skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Reddit dynamic command map, and safety/rate controls.
 ---

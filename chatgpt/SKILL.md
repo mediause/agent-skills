@@ -1,4 +1,4 @@
-﻿---
+---
 name: chatgpt
 description: Standardized ChatGPT skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full ChatGPT dynamic command map, and safety/rate controls.
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: arxiv
 description: Standardized arXiv skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full arXiv dynamic command map, and safety/rate controls.
 ---
