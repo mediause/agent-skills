@@ -284,7 +284,17 @@ mediause trace last --json
 8. 错误码与恢复
 9. 最小验证清单
 
+文档编码强约束：
+
+- `SKILL.md` 必须使用 UTF-8 无 BOM（UTF-8 no BOM）。
+- 禁止 UTF-8 BOM、UTF-16、GBK 等其他编码。
+- 目标是保证 `npx skills add` 能稳定识别全部 skill。
+
 ## 7. Skill 模板（可直接复制）
+
+模板保存要求：
+
+- 文件保存编码必须是 UTF-8 无 BOM（UTF-8 no BOM）。
 
 ```markdown
 ---
@@ -349,6 +359,7 @@ allowed-tools: Bash(MediaUse:*)
 - 至少提供 2 个端到端 workflow。
 - 明确频率限制与反 spam 规则。
 - 示例命令可直接运行（建议均提供 --json）。
+- 文档编码为 UTF-8 无 BOM（可被 `npx skills add` 全量识别）。
 
 ## Required fields:
 
