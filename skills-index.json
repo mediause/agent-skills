@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-20T08:31:49.397Z",
+  "generatedAt": "2026-05-21T03:45:23.785Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -43,7 +43,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/chatgpt/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/chatgpt/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-11",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -57,7 +57,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/douyinv2/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/douyinv2/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-11",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -71,7 +71,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/fifa2026/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/fifa2026/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-20",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -85,7 +85,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/google/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/google/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-05-11",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -99,7 +99,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/hackernews/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/hackernews/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-05-07",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -113,7 +113,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/huggingface/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/huggingface/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-16",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -127,7 +127,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/instagram/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/instagram/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-15",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -141,7 +141,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/reddit/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/reddit/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-11",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     },
     {
@@ -155,7 +155,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/weibov2/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/weibov2/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-11",
+      "lastUpdated": "2026-05-21",
       "version": "v2"
     },
     {
@@ -169,7 +169,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/xiaohongshu/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/xiaohongshu/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-13",
+      "lastUpdated": "2026-05-21",
       "version": "v1"
     }
   ]
