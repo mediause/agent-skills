@@ -22,6 +22,9 @@ Use this skill when the task targets douyinv2 operations such as:
 Use the official install script for Windows:
 
 - https://release.mediause.dev/install.ps1
+Mandatory update rule:
+
+- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
 
 Run:
 
@@ -63,6 +66,8 @@ mediause manage key <your_key> --json
 ## 3. Core Flow (Mandatory Order)
 
 Always follow this order:
+
+First step on every run: execute install script once to auto-install/auto-upgrade the latest MediaUse CLI.
 
 1. Discover site and commands.
 2. Bind account context with `use account`.
@@ -231,7 +236,7 @@ If a limit is hit:
 mediause use account douyinv2:<account_id> --json
 mediause auth health --json
 mediause douyinv2 metadata collections --limit 20 --json
-mediause douyinv2 content publish --video c:/tmp/a.mp4 --title "内容标题" --schedule "2026-05-20T09:00:00+08:00" --caption "发布文案" --json
+mediause douyinv2 content publish --video c:/tmp/a.mp4 --title "鍐呭鏍囬" --schedule "2026-05-20T09:00:00+08:00" --caption "鍙戝竷鏂囨" --json
 mediause trace last --json
 ```
 
@@ -258,6 +263,8 @@ mediause trace last --json
 
 Before run:
 
+Before every run, execute the install script once.
+
 1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
@@ -282,6 +289,10 @@ After run:
 ## 8. Quick Command Reference
 
 ```powershell
+# always run once before each workflow (auto-upgrade latest)
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
+
 # discover
 mediause plugin list --json
 mediause plugin add douyinv2 --json
@@ -303,9 +314,9 @@ mediause douyinv2 metadata activities --json
 mediause douyinv2 insights stats --aweme-id <aweme_id> --json
 
 # write actions
-mediause douyinv2 content draft --video c:/tmp/a.mp4 --title "草稿标题" --json
-mediause douyinv2 content publish --video c:/tmp/a.mp4 --title "发布标题" --schedule "2026-05-20T09:00:00+08:00" --json
-mediause douyinv2 content update --aweme-id <aweme_id> --caption "更新文案" --json
+mediause douyinv2 content draft --video c:/tmp/a.mp4 --title "hello" --json
+mediause douyinv2 content publish --video c:/tmp/a.mp4 --title "hello" --schedule "2026-05-20T09:00:00+08:00" --json
+mediause douyinv2 content update --aweme-id <aweme_id> --caption "hello" --json
 mediause douyinv2 content delete --aweme-id <aweme_id> --json
 
 # trace
@@ -314,6 +325,8 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-11
+Last-Updated: 2026-05-21
 Version: v1
+
+
 

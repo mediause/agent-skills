@@ -23,6 +23,9 @@ Bloomberg skill is read-focused. No publish/reply/engage write actions are defin
 Use the official install script for Windows:
 
 - https://release.mediause.dev/install.ps1
+Mandatory update rule:
+
+- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
 
 Run:
 
@@ -64,6 +67,8 @@ mediause manage key <your_key> --json
 ## 3. Core Flow (Mandatory Order)
 
 Always follow this order:
+
+First step on every run: execute install script once to auto-install/auto-upgrade the latest MediaUse CLI.
 
 1. Discover site and commands.
 2. Bind account context with `use account`.
@@ -299,3 +304,5 @@ Skill Metadata
 Maintainer: @mediause-team
 Last-Updated: 2026-05-13
 Version: v1
+
+

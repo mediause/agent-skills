@@ -25,6 +25,9 @@ Use this skill when the task targets Instagram operations such as:
 Use the official install script for Windows:
 
 - https://release.mediause.dev/install.ps1
+Mandatory update rule:
+
+- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
 
 Run:
 
@@ -66,6 +69,8 @@ mediause manage key <your_key> --json
 ## 3. Core Flow (Mandatory Order)
 
 Always follow this order:
+
+First step on every run: execute install script once to auto-install/auto-upgrade the latest MediaUse CLI.
 
 1. Discover site and commands.
 2. Bind account context with `use account`.
@@ -263,6 +268,8 @@ mediause trace last --json
 
 Before run:
 
+Before every run, execute the install script once.
+
 1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
@@ -287,6 +294,10 @@ After run:
 ## 8. Quick Command Reference
 
 ```powershell
+# always run once before each workflow (auto-upgrade latest)
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
+
 # discover
 mediause plugin list --json
 mediause plugin add instagram --json
@@ -310,5 +321,7 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-15
+Last-Updated: 2026-05-21
 Version: v1
+
+

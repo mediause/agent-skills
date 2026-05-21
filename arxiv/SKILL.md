@@ -316,6 +316,10 @@ mediause trace last --json
 ## 7. Quick Reference
 
 ```powershell
+# always run once before each workflow (auto-upgrade latest)
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
+
 # Install
 powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 mediause plugin add arxiv --json

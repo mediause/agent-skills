@@ -1,4 +1,4 @@
----
+﻿---
 name: xiaohongshu
 description: Standardized Xiaohongshu skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Xiaohongshu dynamic command map, and safety/rate controls.
 ---
@@ -24,6 +24,9 @@ Use this skill when the task targets Xiaohongshu operations such as:
 Use the official install script for Windows:
 
 - https://release.mediause.dev/install.ps1
+Mandatory update rule:
+
+- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
 
 Run:
 
@@ -65,6 +68,8 @@ mediause manage key <your_key> --json
 ## 3. Core Flow (Mandatory Order)
 
 Always follow this order:
+
+First step on every run: execute install script once to auto-install/auto-upgrade the latest MediaUse CLI.
 
 1. Discover site and commands.
 2. Bind account context with `use account`.
@@ -251,7 +256,7 @@ If a limit is hit:
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu search hot --json
-mediause xiaohongshu post feed --title "今日推荐" --text "<draft_text>" --media c:/tmp/a.png,c:/tmp/b.png --json
+mediause xiaohongshu post feed --title "浠婃棩鎺ㄨ崘" --text "<draft_text>" --media c:/tmp/a.png,c:/tmp/b.png --json
 mediause trace last --json
 ```
 
@@ -260,7 +265,7 @@ mediause trace last --json
 ```powershell
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
-mediause xiaohongshu post feed --title "2026穿搭" --text "今日分享" --media c:/tmp/a.mp4 --cover c:/tmp/cover.png --json
+mediause xiaohongshu post feed --title "2026绌挎惌" --text "浠婃棩鍒嗕韩" --media c:/tmp/a.mp4 --cover c:/tmp/cover.png --json
 mediause trace last --json
 ```
 
@@ -269,7 +274,7 @@ mediause trace last --json
 ```powershell
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
-mediause xiaohongshu post feed --title "2026穿搭" --text "今日分享" --json
+mediause xiaohongshu post feed --title "2026绌挎惌" --text "浠婃棩鍒嗕韩" --json
 mediause trace last --json
 ```
 
@@ -306,6 +311,8 @@ mediause trace last --json
 
 Before run:
 
+Before every run, execute the install script once.
+
 1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
@@ -330,6 +337,10 @@ After run:
 ## 8. Quick Command Reference
 
 ```powershell
+# always run once before each workflow (auto-upgrade latest)
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
+
 # discover
 mediause sites list --json
 mediause sites add xiaohongshu --json
@@ -353,6 +364,8 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-13
+Last-Updated: 2026-05-21
 Version: v1
+
+
 

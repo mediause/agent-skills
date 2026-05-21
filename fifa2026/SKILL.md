@@ -27,6 +27,10 @@ Use the official install script for Windows:
 
 - https://release.mediause.dev/install.ps1
 
+Mandatory update rule:
+
+- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
+
 Run:
 
 ```powershell
@@ -68,11 +72,12 @@ mediause manage key <your_key> --json
 
 Always follow this order:
 
-1. Discover site and commands.
-2. Bind account context with `use account`.
-3. Check status with `auth health` when needed.
-4. Execute dynamic site actions.
-5. Verify with trace/task.
+1. Run install script once to ensure latest CLI.
+2. Discover site and commands.
+3. Bind account context with `use account`.
+4. Check status with `auth health` when needed.
+5. Execute dynamic site actions.
+6. Verify with trace/task.
 
 ### 3.1 Discover and plugin setup
 
@@ -269,7 +274,7 @@ mediause trace last --json
 
 Before run:
 
-1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
+1. Run `https://release.mediause.dev/install.ps1` once to auto-install/upgrade latest CLI.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
 4. Account context bound via `mediause use account <platform:account_id>`.
@@ -290,6 +295,10 @@ After run:
 ## 8. Quick Command Reference
 
 ```powershell
+# always run once before each workflow (auto-upgrade latest)
+powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
+
 # discover
 mediause plugin list --json
 mediause plugin add fifa2026 --json
@@ -320,5 +329,5 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-20
+Last-Updated: 2026-05-21
 Version: v1
