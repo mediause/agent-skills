@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-21T07:27:57.019Z",
+  "generatedAt": "2026-05-25T12:39:28.146Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -16,6 +16,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/arxiv/SKILL.md",
       "maintainer": "@mediause-demo",
       "lastUpdated": "2026-05-12",
+      "version": "v1"
+    },
+    {
+      "pluginName": "bilibili",
+      "slug": "bilibili",
+      "title": "MediaUse Bilibili Skill",
+      "summary": "该 Skill 是 bilibili 插件的总览与使用说明，帮助用户快速完成“发现命令 -> 选择参数 -> 执行任务 -> 回溯结果”的完整操作。",
+      "frontmatterName": "bilibili",
+      "description": "MediaUse bilibili skill usage guide. Includes full bilibili manifest command map, parameter guidance, and executable examples for search/get/read/user/collection/engage flows.",
+      "sourcePath": "bilibili/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/bilibili/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/bilibili/SKILL.md",
+      "maintainer": "@mediause-demo",
+      "lastUpdated": "2026-05-25",
       "version": "v1"
     },
     {
