@@ -101,6 +101,14 @@ mediause auth list --json
 mediause use account instagram:<account_id> --policy balanced --json
 ```
 
+If challenge/risk prompts appear, reopen in visible mode:
+
+```powershell
+mediause use account instagram:<account_id> --policy balanced --show --json
+```
+
+`--show` usually lowers repeated interception risk in challenged sessions.
+
 ### 3.3 Auth health precondition
 
 `auth health` is valid only after successful `use account`.

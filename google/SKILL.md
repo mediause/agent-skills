@@ -20,6 +20,7 @@ Google skill is guest-only.
 - Use `mediause use account google:guest --json`.
 - `use account` defaults to a hidden browser session.
 - If you need to see the browser, use `mediause use account google:guest --show --json`.
+- `--show` usually lowers repeated anti-bot interception risk in challenged sessions.
 - Do not call `mediause auth login google --json` for this skill.
 - If Google shows an `unusual traffic` prompt or captcha, rerun `use account` with `--show` and complete the verification manually.
 

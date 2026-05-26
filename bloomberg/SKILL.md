@@ -130,6 +130,10 @@ Guest mode notes:
 mediause use account bloomberg:guest --policy balanced --show --json
 ```
 
+Risk reduction note:
+
+- A visible `--show` session often lowers repeated anti-bot/challenge interception risk.
+
 ## 4. Bloomberg Dynamic Command Map (v1)
 
 Source schema:

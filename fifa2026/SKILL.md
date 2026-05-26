@@ -111,6 +111,11 @@ If you need to watch page behavior (for challenge/manual checks):
 mediause use account fifa2026:guest --show --json
 ```
 
+Risk reduction note:
+
+- For site-backed actions (`search/get/compare/predict`), prefer binding with `--show`.
+- A visible session usually lowers Cloudflare/challenge interception risk versus fully hidden runs.
+
 ### 3.3 Auth health precondition
 
 For `fifa2026` read workflows, `guest` is typically sufficient. If a non-guest account is used, check:
@@ -203,7 +208,7 @@ Same-target guardrails:
 If a limit is hit or challenge repeats:
 
 1. Pause at least 5 minutes.
-2. Rebind context with `use account`.
+2. Rebind context with `use account --show`.
 3. Resume with lower frequency.
 
 ### 5.3 Safety policy
@@ -231,7 +236,7 @@ mediause trace last --json
 ### 6.2 Group lookup by letters
 
 ```powershell
-mediause use account fifa2026:guest --json
+mediause use account fifa2026:guest --show --json
 mediause fifa2026 search group --query "a,b,c" --json
 mediause trace last --json
 ```
@@ -239,7 +244,7 @@ mediause trace last --json
 ### 6.3 Group lookup by country
 
 ```powershell
-mediause use account fifa2026:guest --json
+mediause use account fifa2026:guest --show --json
 mediause fifa2026 search group --query "brazil" --json
 mediause trace last --json
 ```
@@ -247,7 +252,7 @@ mediause trace last --json
 ### 6.4 Player to stats drill-down
 
 ```powershell
-mediause use account fifa2026:guest --json
+mediause use account fifa2026:guest --show --json
 mediause fifa2026 search player --name "marta" --limit 5 --json
 mediause fifa2026 get player --url <player_url> --json
 mediause fifa2026 get player-stats --url <player_url> --limit 5 --json
@@ -257,7 +262,7 @@ mediause trace last --json
 ### 6.5 Team comparison
 
 ```powershell
-mediause use account fifa2026:guest --json
+mediause use account fifa2026:guest --show --json
 mediause fifa2026 compare teams --team_a_url <team_a_url> --team_b_url <team_b_url> --json
 mediause trace last --json
 ```
@@ -265,7 +270,7 @@ mediause trace last --json
 ### 6.6 Match prediction
 
 ```powershell
-mediause use account fifa2026:guest --json
+mediause use account fifa2026:guest --show --json
 mediause fifa2026 predict match --home_url <home_team_url> --away_url <away_team_url> --neutral_site true --json
 mediause trace last --json
 ```
@@ -277,7 +282,7 @@ Before run:
 1. Run `https://release.mediause.dev/install.ps1` once to auto-install/upgrade latest CLI.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
-4. Account context bound via `mediause use account <platform:account_id>`.
+4. Account context bound via `mediause use account <platform:account_id> --show` (recommended for lower interception risk).
 5. If using non-guest account, `mediause auth health --json` checked.
 
 During run:
@@ -310,6 +315,7 @@ mediause fifa2026 predict -h
 
 # context + status
 mediause auth list --json
+mediause use account fifa2026 --show --json
 mediause use account fifa2026:guest --show --json
 mediause auth health --json
 
@@ -329,5 +335,5 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-21
+Last-Updated: 2026-05-26
 Version: v1

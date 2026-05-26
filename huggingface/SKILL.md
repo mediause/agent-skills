@@ -104,6 +104,10 @@ If the page/session is challenged (for example unusual traffic), rerun with visi
 mediause use account huggingface:guest --show --json
 ```
 
+Risk reduction note:
+
+- `--show` usually lowers repeated anti-bot interception risk in challenged sessions.
+
 ## 4. Hugging Face Dynamic Command Map (v1)
 
 Source manifest:

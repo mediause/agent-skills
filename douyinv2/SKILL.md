@@ -124,6 +124,10 @@ If page shows `unusual traffic`, captcha, or risk confirmation:
 mediause use account douyinv2:<account_id> --policy balanced --show --json
 ```
 
+Risk reduction note:
+
+- In challenged sessions, `--show` usually lowers repeated interception risk.
+
 Complete verification manually, then rerun the action.
 
 ### 3.4 Guest mode (optional)

@@ -46,6 +46,10 @@ mediause auth health --json
 mediause use account bilibili:<account_id> --show --json
 ```
 
+风险说明：
+
+- 对站点实时读取/互动动作，`--show` 通常可降低反爬挑战导致的拦截风险。
+
 可选 guest：
 
 ```powershell

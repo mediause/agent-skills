@@ -1,4 +1,4 @@
----
+﻿---
 name: chatgpt
 description: Standardized ChatGPT skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full ChatGPT dynamic command map, and safety/rate controls.
 ---
@@ -119,6 +119,10 @@ If page shows `unusual traffic`, captcha, or risk confirmation:
 ```powershell
 mediause use account chatgpt:<account_id> --policy balanced --show --json
 ```
+
+Risk reduction note:
+
+- In challenged sessions, `--show` usually reduces repeated interception risk.
 
 Complete verification manually, then rerun the action.
 

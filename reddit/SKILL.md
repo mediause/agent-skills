@@ -97,6 +97,10 @@ mediause reddit get -h
 
 For Reddit skill, always use visible mode with `--show`.
 
+Reason:
+
+- `--show` usually lowers repeated anti-bot/challenge interception risk for Reddit flows.
+
 ```powershell
 mediause auth list --json
 mediause use account reddit:<account_id> --policy balanced --show --json
