@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-25T12:39:28.146Z",
+  "generatedAt": "2026-05-26T03:29:26.987Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -85,7 +85,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/main/fifa2026/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/fifa2026/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
+      "lastUpdated": "2026-05-26",
       "version": "v1"
     },
     {
