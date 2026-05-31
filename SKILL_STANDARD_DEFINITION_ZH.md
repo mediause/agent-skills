@@ -16,10 +16,10 @@
 
 使用官方 Windows 安装脚本：
 
-- https://release.mediause.dev/install.ps1
+- https://cdn.mediause.dev/install.ps1
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+powershell -C "irm https://cdn.mediause.dev/install.ps1 | iex"
 ```
 
 ### 1.2 Skill 安装目录建议

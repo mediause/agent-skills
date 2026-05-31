@@ -28,7 +28,7 @@ Use the official install script for Windows:
 Run:
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+powershell -C "irm https://cdn.mediause.dev/install.ps1 | iex"
 ```
 
 Then verify :
