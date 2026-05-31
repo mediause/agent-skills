@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-26T03:29:26.987Z",
+  "generatedAt": "2026-05-31T16:38:01.358Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -142,6 +142,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/instagram/SKILL.md",
       "maintainer": "@mediause-demo",
       "lastUpdated": "2026-05-21",
+      "version": "v1"
+    },
+    {
+      "pluginName": "medium",
+      "slug": "medium",
+      "title": "MediaUse Medium Skill",
+      "summary": "Use this skill to discover Medium posts by topic, tag, search, user feed, and to read full article content with preserved inline images.",
+      "frontmatterName": "medium",
+      "description": "Standardized Medium skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Medium dynamic command map, and safe read-oriented execution controls.",
+      "sourcePath": "medium/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/medium/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/medium/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-06-01",
       "version": "v1"
     },
     {
