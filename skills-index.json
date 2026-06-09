@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-09T07:26:40.815Z",
+  "generatedAt": "2026-06-09T07:42:01.307Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -142,6 +142,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/instagram/SKILL.md",
       "maintainer": "@mediause-demo",
       "lastUpdated": "2026-05-21",
+      "version": "v1"
+    },
+    {
+      "pluginName": "linkedin",
+      "slug": "linkedin",
+      "title": "MediaUse LinkedIn Skill",
+      "summary": "Operate LinkedIn workflows with a consistent setup for search, profile intelligence, inbox/thread reads, and guarded outreach actions.",
+      "frontmatterName": "linkedin",
+      "description": "Use when handling MediaUse LinkedIn automation tasks, including jobs and people search, timeline and inbox retrieval, profile reads, safe connect/message flows, and Sales Navigator workflows, with Windows install, key onboarding, strict context/auth flow, full dynamic command map, and safety/rate controls.",
+      "sourcePath": "linkedin/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/linkedin/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/linkedin/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-06-09",
       "version": "v1"
     },
     {
