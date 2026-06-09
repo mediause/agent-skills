@@ -296,12 +296,8 @@ allowed-tools: Bash(MediaUse:*)
 - workflow-a:
 - workflow-b:
 
-# 6. Guardrails
-- anti-spam
-- rate-limit
-- policy constraints
 
-# 7. Recovery
+# 6. Recovery
 - common errors
 - retry strategy
 ```
@@ -327,7 +323,6 @@ allowed-tools: Bash(MediaUse:*)
 - 包含安装、key、core 流程、workflow、约束 5 大部分。
 - 所有站点动作均来自对应 manifest.yaml
 - 至少提供 2 个端到端 workflow。
-- 明确频率限制与反 spam 规则。
 - 示例命令可直接运行（建议均提供 --json）。
 - 文档编码为 UTF-8 无 BOM（可被 `npx skills add` 全量识别）。
 
