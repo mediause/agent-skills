@@ -18,6 +18,8 @@ Use this skill when the task targets LinkedIn operations such as:
 - Outreach: safe connect, safe send message
 - Sales Navigator: inbox, message, thread
 
+LinkedIn operations in this skill require a logged-in account context. Guest mode is not supported for linkedin plugin actions.
+
 ## 1. Install MediaUse CLI (Windows Only)
 
 Use the official install script for Windows:
@@ -71,10 +73,11 @@ Always follow this order:
 First step on every run: execute install script once to auto-install or auto-upgrade the latest MediaUse CLI.
 
 1. Discover site and commands.
-2. Bind account context with use account.
-3. Check status with auth health.
-4. Execute LinkedIn dynamic actions.
-5. Verify with trace/task.
+2. Login and add account with auth login linkedin.
+3. Bind account context with use account.
+4. Check status with auth health and account health.
+5. Execute LinkedIn dynamic actions.
+6. Verify with trace/task.
 
 ### 3.1 Discover and plugin setup
 
@@ -85,6 +88,20 @@ mediause linkedin -h
 mediause linkedin search -h
 mediause linkedin get -h
 ```
+
+### 3.1.1 Mandatory login first
+
+Before any linkedin command, complete login and account binding:
+
+```powershell
+mediause auth login linkedin --json
+mediause auth list --json
+mediause use account linkedin:<account_id> --policy balanced --json
+mediause auth health --json
+mediause linkedin account health --json
+```
+
+If login is not completed, linkedin commands return login-required errors.
 
 ### 3.2 Bind context before actions
 
@@ -99,6 +116,8 @@ use account argument format:
 mediause auth list --json
 mediause use account linkedin:<account_id> --policy balanced --json
 ```
+
+Do not use `linkedin:guest` for this plugin. All actions require a logged-in account.
 
 If challenge/risk prompts appear, reopen in visible mode:
 
@@ -120,6 +139,7 @@ If auth health indicates not logged in/expired:
 mediause auth login linkedin --json
 mediause use account linkedin:<account_id> --policy balanced --json
 mediause auth health --json
+mediause linkedin account health --json
 ```
 
 ## 4. LinkedIn Dynamic Command Map (v1)
@@ -276,9 +296,11 @@ Before every run, execute the install script once.
 2. PATH updated and mediause --version works.
 3. API key configured and verified.
 4. Account context bound via mediause use account <platform:account_id>.
-5. auth health checked after context bind.
-6. If not logged in, run mediause auth login linkedin --json and re-bind context.
-7. Pacing policy is enabled.
+5. auth login linkedin completed for the target account.
+6. auth health checked after context bind.
+7. linkedin account health checked and healthy=true.
+8. If not logged in, run mediause auth login linkedin --json and re-bind context.
+9. Pacing policy is enabled.
 
 During run:
 
