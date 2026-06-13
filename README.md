@@ -1,4 +1,8 @@
 
+
+
+
+
 <pre>
 ███╗   ███╗███████╗██████╗ ██╗ █████╗ ██╗   ██╗███████╗███████╗
 ████╗ ████║██╔════╝██╔══██╗██║██╔══██╗██║   ██║██╔════╝██╔════╝
@@ -28,7 +32,7 @@ In short: the agent decides what to do, MediaUse decides how to do it reliably o
 <img width="1195" height="896" alt="Image_aoc32xaoc32xaoc3" src="https://github.com/user-attachments/assets/4778c785-ad75-4616-9c00-c301f9db2ec0" />
 
 <p align="center" width="100%">
-<video src="https://github.com/user-attachments/assets/c4c0c494-2d6d-4164-9839-7950928a1085" width="80%" controls title="CLI example"></video>
+<video src="https://github.com/user-attachments/assets/0cf7b144-6b66-45a6-96b8-a18f554bdd8c" width="80%" controls title="CLI example"></video>
 </p>
 
 
