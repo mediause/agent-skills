@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-17T07:17:07.950Z",
+  "generatedAt": "2026-07-25T13:14:22.225Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -170,6 +170,20 @@
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/medium/SKILL.md",
       "maintainer": "@mediause-team",
       "lastUpdated": "2026-06-01",
+      "version": "v1"
+    },
+    {
+      "pluginName": "netflix",
+      "slug": "netflix",
+      "title": "MediaUse Netflix Skill",
+      "summary": "Run Netflix Tudum content discovery with guest-first dynamic commands, optional account context binding, and stable JSON-oriented execution.",
+      "frontmatterName": "netflix",
+      "description": "Use when handling MediaUse Netflix Tudum tasks, including list/get/search actions with guest-first dynamic commands, multi-platform direct switching, and safe execution guardrails.",
+      "sourcePath": "netflix/SKILL.md",
+      "repoUrl": "https://github.com/mediause/agent-skills/blob/main/netflix/SKILL.md",
+      "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/main/netflix/SKILL.md",
+      "maintainer": "@mediause-team",
+      "lastUpdated": "2026-07-25",
       "version": "v1"
     },
     {
