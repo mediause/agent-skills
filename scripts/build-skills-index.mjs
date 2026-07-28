@@ -6,7 +6,8 @@ import { promisify } from "node:util"
 
 const repoRoot = path.resolve(process.cwd())
 const repoUrl = "https://github.com/mediause/agent-skills"
-const rawBaseUrl = "https://raw.githubusercontent.com/mediause/agent-skills/main"
+const branchName = "master"
+const rawBaseUrl = `https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/${branchName}`
 const ignoredEntries = new Set([".git", ".github", "scripts"])
 const execFileAsync = promisify(execFile)
 
@@ -146,7 +147,7 @@ async function collectSkills() {
         frontmatterName: data.name || null,
         description: data.description || "",
         sourcePath: `${pluginName}/SKILL.md`,
-        repoUrl: `${repoUrl}/blob/main/${pluginName}/SKILL.md`,
+        repoUrl: `${repoUrl}/blob/${branchName}/${pluginName}/SKILL.md`,
         rawUrl: `${rawBaseUrl}/${pluginName}/SKILL.md`,
         maintainer: data.maintainer || metadata.maintainer,
         lastUpdated,
