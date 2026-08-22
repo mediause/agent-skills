@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-28T01:27:11.605Z",
+  "generatedAt": "2026-08-22T00:23:55.693Z",
   "sourceRepo": "https://github.com/mediause/agent-skills",
   "mappingKey": "pluginName",
   "skills": [
@@ -15,22 +15,22 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/arxiv/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/arxiv/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-12",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "bilibili",
       "slug": "bilibili",
       "title": "MediaUse Bilibili Skill",
-      "summary": "该 Skill 是 bilibili 插件的总览与使用说明，帮助用户快速完成“发现命令 -> 选择参数 -> 执行任务 -> 回溯结果”的完整操作。",
+      "summary": "该 Skill 面向 bilibili 平台的内容发现、账号上下文、视频/动态/评论读取，以及可选的发布互动工作流，适合在 MediaUse CLI 中完成从命令发现到结果回溯的完整操作。",
       "frontmatterName": "bilibili",
       "description": "MediaUse bilibili skill usage guide. Includes full bilibili manifest command map, parameter guidance, and executable examples for search/get/read/user/collection/engage flows.",
       "sourcePath": "bilibili/SKILL.md",
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/bilibili/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/bilibili/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-25",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "bloomberg",
@@ -43,8 +43,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/bloomberg/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/bloomberg/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-05-13",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "chatgpt",
@@ -57,8 +57,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/chatgpt/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/chatgpt/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "douyinv2",
@@ -71,8 +71,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/douyinv2/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/douyinv2/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "fifa2026",
@@ -85,8 +85,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/fifa2026/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/fifa2026/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-26",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "google",
@@ -99,8 +99,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/google/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/google/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "hackernews",
@@ -113,8 +113,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/hackernews/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/hackernews/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "huggingface",
@@ -127,8 +127,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/huggingface/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/huggingface/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "instagram",
@@ -141,8 +141,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/instagram/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/instagram/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "linkedin",
@@ -155,8 +155,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/linkedin/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/linkedin/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-06-09",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "medium",
@@ -169,8 +169,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/medium/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/medium/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-06-01",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "netflix",
@@ -183,8 +183,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/netflix/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/netflix/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-07-25",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "producthunt",
@@ -197,8 +197,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/producthunt/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/producthunt/SKILL.md",
       "maintainer": "@mediause-team",
-      "lastUpdated": "2026-06-09",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "reddit",
@@ -211,8 +211,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/reddit/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/reddit/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "twitter",
@@ -225,8 +225,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/twitter/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/twitter/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-06-06",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "weibov2",
@@ -239,7 +239,7 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/weibov2/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/weibov2/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
+      "lastUpdated": "2026-08-22",
       "version": "v2"
     },
     {
@@ -253,8 +253,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/weixin/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/weixin/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-06-06",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     },
     {
       "pluginName": "xiaohongshu",
@@ -267,8 +267,8 @@
       "repoUrl": "https://github.com/mediause/agent-skills/blob/master/xiaohongshu/SKILL.md",
       "rawUrl": "https://raw.githubusercontent.com/mediause/agent-skills/refs/heads/master/xiaohongshu/SKILL.md",
       "maintainer": "@mediause-demo",
-      "lastUpdated": "2026-05-21",
-      "version": "v1"
+      "lastUpdated": "2026-08-22",
+      "version": "v2"
     }
   ]
 }
