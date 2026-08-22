@@ -1,4 +1,4 @@
----
+﻿---
 name: xiaohongshu
 description: Standardized Xiaohongshu skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Xiaohongshu dynamic command map, and safety/rate controls.
 ---
@@ -19,26 +19,16 @@ Use this skill when the task targets Xiaohongshu operations such as:
 - Engage: like, follow, collect
 - Management/trace: manage task, trace last
 
-## 1. Install MediaUse CLI (Windows Only)
+## 1. Install MediaUse CLI
 
-Use the official install script for Windows:
-
-- https://release.mediause.dev/install.ps1
-Mandatory update rule:
-
-- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
-
-Run:
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
-```
-
-Then verify :
-
-```powershell
+npm install -g @mediause/cli
 mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 Current support status:
 
@@ -54,15 +44,15 @@ Recommended skill install path:
 
 ### 2.1 Apply for key
 
-1. Open https://mediause.dev/
-2. Sign in to your account.
-3. Open Project.
-4. Create or copy your API key.
+1. Open https://mediause.dev/ in the user's browser.
+2. Sign in to the user's account.
+3. Open the Project settings.
+4. Create or view the API key in the user's own secure environment; never paste it into chat, logs, terminal history, or a CLI command.
 
 ### 2.2 Configure key in CLI
 
 ```powershell
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
 
 ## 3. Core Flow (Mandatory Order)
@@ -264,7 +254,7 @@ If a limit is hit:
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
 mediause xiaohongshu search hot --json
-mediause xiaohongshu post feed --title "浠婃棩鎺ㄨ崘" --text "<draft_text>" --media c:/tmp/a.png,c:/tmp/b.png --json
+mediause xiaohongshu post feed --title "娴犲﹥妫╅幒銊ㄥ礃" --text "<draft_text>" --media c:/tmp/a.png,c:/tmp/b.png --json
 mediause trace last --json
 ```
 
@@ -273,7 +263,7 @@ mediause trace last --json
 ```powershell
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
-mediause xiaohongshu post feed --title "2026绌挎惌" --text "浠婃棩鍒嗕韩" --media c:/tmp/a.mp4 --cover c:/tmp/cover.png --json
+mediause xiaohongshu post feed --title "2026缁屾寧鎯? --text "娴犲﹥妫╅崚鍡曢煩" --media c:/tmp/a.mp4 --cover c:/tmp/cover.png --json
 mediause trace last --json
 ```
 
@@ -282,7 +272,7 @@ mediause trace last --json
 ```powershell
 mediause use account xiaohongshu:<account_id> --json
 mediause auth health --json
-mediause xiaohongshu post feed --title "2026绌挎惌" --text "浠婃棩鍒嗕韩" --json
+mediause xiaohongshu post feed --title "2026缁屾寧鎯? --text "娴犲﹥妫╅崚鍡曢煩" --json
 mediause trace last --json
 ```
 
@@ -346,7 +336,7 @@ After run:
 
 ```powershell
 # always run once before each workflow (auto-upgrade latest)
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
 mediause --version
 
 # discover
@@ -372,8 +362,10 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-21
-Version: v1
+Last-Updated: 2026-08-22
+Version: v2
+
+
 
 
 

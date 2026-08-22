@@ -1,4 +1,4 @@
----
+﻿---
 name: netflix
 description: Use when handling MediaUse Netflix Tudum tasks, including list/get/search actions with guest-first dynamic commands, multi-platform direct switching, and safe execution guardrails.
 ---
@@ -16,18 +16,16 @@ Use this skill when the task targets Netflix operations such as:
 - Tudum title/article retrieval
 - What's New search and filtering
 
-## 1. Install MediaUse CLI (Windows Only)
+## 1. Install MediaUse CLI
 
-Use the official install script for Windows:
-
-- https://release.mediause.dev/install.ps1
-
-Run:
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+npm install -g @mediause/cli
 mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 Current support status:
 
@@ -38,7 +36,7 @@ Current support status:
 ## 2. Configure API Key
 
 ```powershell
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
 
 Optional checks:
@@ -189,5 +187,7 @@ After run:
 
 Skill Metadata
 Maintainer: @mediause-team
-Last-Updated: 2026-07-25
-Version: v1
+Last-Updated: 2026-08-22
+Version: v2
+
+

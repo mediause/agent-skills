@@ -15,26 +15,16 @@ Use this skill when the task targets ChatGPT operations such as:
 - Chat: status, new conversation, send/ask prompts, read/history/detail
 - Image: generate images from prompts
 
-## 1. Install MediaUse CLI (Windows Only)
+## 1. Install MediaUse CLI
 
-Use the official install script for Windows:
-
-- https://release.mediause.dev/install.ps1
-Mandatory update rule:
-
-- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
-
-Run:
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
-```
-
-Then verify :
-
-```powershell
+npm install -g @mediause/cli
 mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 Current support status:
 
@@ -50,15 +40,15 @@ Recommended skill install path:
 
 ### 2.1 Apply for key
 
-1. Open https://mediause.dev/
-2. Sign in to your account.
-3. Open Project.
-4. Create or copy your API key.
+1. Open https://mediause.dev/ in the user's browser.
+2. Sign in to the user's account.
+3. Open the Project settings.
+4. Create or view the API key in the user's own secure environment; never paste it into chat, logs, terminal history, or a CLI command.
 
 ### 2.2 Configure key in CLI
 
 ```powershell
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
 
 ## 3. Core Flow (Mandatory Order)
@@ -267,7 +257,7 @@ After run:
 
 ```powershell
 # always run once before each workflow (auto-upgrade latest)
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
 mediause --version
 
 # discover
@@ -301,7 +291,9 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-21
-Version: v1
+Last-Updated: 2026-08-22
+Version: v2
+
+
 
 

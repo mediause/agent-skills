@@ -1,4 +1,4 @@
----
+﻿---
 name: twitter
 description: Standardized Twitter/X skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full Twitter/X dynamic command map, and safety/rate controls.
 ---
@@ -21,26 +21,16 @@ Use this skill when the task targets Twitter/X operations such as:
 - Moderate: delete, hide-reply, block, unblock
 - Message: accept DM requests and send replies
 
-## 1. Install MediaUse CLI (Windows Only)
+## 1. Install MediaUse CLI
 
-Use the official install script for Windows:
-
-- https://release.mediause.dev/install.ps1
-Mandatory update rule:
-
-- Before every run, execute the install script once to auto-install or auto-upgrade to the latest MediaUse CLI.
-
-Run:
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
-```
-
-Then verify:
-
-```powershell
+npm install -g @mediause/cli
 mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 Current support status:
 
@@ -56,15 +46,15 @@ Recommended skill install path:
 
 ### 2.1 Apply for key
 
-1. Open https://mediause.dev/
-2. Sign in to your account.
-3. Open Project.
-4. Create or copy your API key.
+1. Open https://mediause.dev/ in the user's browser.
+2. Sign in to the user's account.
+3. Open the Project settings.
+4. Create or view the API key in the user's own secure environment; never paste it into chat, logs, terminal history, or a CLI command.
 
 ### 2.2 Configure key in CLI
 
 ```powershell
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
 
 ## 3. Core Flow (Mandatory Order)
@@ -140,7 +130,7 @@ Guest mode guardrails:
 Source schema:
 
 - plugin: plugin.twitter
-- schema version: v1
+- schema Version: v2
 
 ### 4.1 account commands
 
@@ -293,7 +283,7 @@ mediause trace last --json
 
 Before run:
 
-1. CLI installed via https://release.mediause.dev/install.ps1 on Windows.
+1. CLI installed and available in PATH; verify with mediause --version on Windows.
 2. PATH updated and mediause --version works.
 3. API key configured.
 4. Account context bound via mediause use account <platform:account_id>.
@@ -315,7 +305,7 @@ After run:
 
 ```powershell
 # always run once before each workflow auto-upgrade latest
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
+mediause --version
 mediause --version
 
 # discover
@@ -342,5 +332,7 @@ mediause trace last --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-06-06
-Version: v1
+Last-Updated: 2026-08-22
+Version: v2
+
+

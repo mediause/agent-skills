@@ -10,17 +10,18 @@
 
 ## 1. 安装与下载（Installation）
 
-### 1.1 二进制安装
+### 1.1 CLI 安装
 
 当前仅支持 Windows，暂不支持 macOS 和 Linux。
 
-使用官方 Windows 安装脚本：
-
-- https://cdn.mediause.dev/install.ps1
+在用户自己的安全环境中使用官方 npm 包安装 MediaUse CLI：
 
 ```powershell
-powershell -C "irm https://cdn.mediause.dev/install.ps1 | iex"
+npm install -g @mediause/cli
+mediause --version
 ```
+
+如果 CLI 已安装，再次运行版本检查以确认其已出现在 PATH 中。
 
 ### 1.2 Skill 安装目录建议
 
@@ -54,15 +55,15 @@ Skill 中应明确：
 - Key 生效范围（本机 / 会话 / 环境变量）
 - Key 失效或缺失时的标准报错提示
 
-### 2.2 本地配置方式
+### 2.2 安全校验与本地配置
+
+在执行任何站点动作前，先运行只读校验，确认 MediaUse API Key 是否已配置：
 
 ```powershell
-# 方式 A：环境变量
-$env:MEDIAUSE_API_KEY = "<your_key>"
-
-# 方式 B：CLI 持久化（推荐）
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
+
+此命令仅用于验证配置状态。不要将密钥内容粘贴、回显、打印到聊天记录、日志、终端历史或技能说明中。若返回结果为空或未配置，必须要求用户在自己的安全本地环境中配置，或通过 MediaUse 应用进行设置；不得指示模型把 API Key 直接嵌入 CLI 命令或在提示中逐字复制粘贴。
 
 ### 2.3 鉴权验证
 

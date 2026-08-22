@@ -10,17 +10,18 @@ Applicable architecture: core command + site dynamic command.
 
 ## 1. Installation and Download
 
-### 1.1 Binary Installation
+### 1.1 CLI Installation
 
 Only Windows is currently supported. macOS and Linux are not yet supported.
 
-Use the official Windows installation script:
-
-- https://cdn.mediause.dev/install.ps1
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "irm https://cdn.mediause.dev/install.ps1 | iex"
+npm install -g @mediause/cli
+mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 ### 1.2 Recommended Skill Installation Directory
 
@@ -46,7 +47,7 @@ Current standard acquisition flow:
 1. Visit https://mediause.dev/
 2. Complete account sign-in
 3. Go to the Project page
-4. Create or copy an API Key under Project
+4. Create or view an API key in the user's own secure environment under Project; never paste it into chat, logs, terminal history, or CLI commands.
 
 The Skill should explicitly state:
 
@@ -54,15 +55,15 @@ The Skill should explicitly state:
 - The scope of the Key (local / session / environment variable)
 - The standard error message when the Key is missing or invalid
 
-### 2.2 Local Configuration Methods
+### 2.2 Safe Verification and Local Configuration
+
+Before any site action, first run a read-only check to see whether a MediaUse API key is already configured:
 
 ```powershell
-# Method A: environment variable
-$env:MEDIAUSE_API_KEY = "<your_key>"
-
-# Method B: CLI persistence (recommended)
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
+
+This command is only for verification. Do not paste, echo, or print the secret value into chat, logs, terminal history, or the skill instructions. If the result shows no configured key, ask the user to set it in their own secure local environment or via the MediaUse app; never instruct the model to embed the API key directly into a CLI command or to copy it verbatim into a prompt.
 
 ### 2.3 Authentication Verification
 

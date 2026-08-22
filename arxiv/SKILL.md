@@ -1,4 +1,4 @@
----
+﻿---
 name: arxiv
 description: Standardized arXiv skill for MediaUse. Includes Windows install, key onboarding, strict context/auth flow, full arXiv dynamic command map, and safety/rate controls.
 ---
@@ -19,23 +19,16 @@ Use this skill when the task targets arXiv operations such as:
 
 arXiv is a public read-only repository. No login required. All operations are read-only.
 
-## 1. Install MediaUse CLI (Windows Only)
+## 1. Install MediaUse CLI
 
-Use the official install script for Windows:
-
-- https://release.mediause.dev/install.ps1
-
-Run:
+Install the MediaUse CLI in the user's own secure environment using the official npm package:
 
 ```powershell
-powershell -C "irm https://cdn.mediause.dev/install.ps1 | iex"
-```
-
-Then verify :
-
-```powershell
+npm install -g @mediause/cli
 mediause --version
 ```
+
+If the CLI is already installed, run the version check again to confirm it is available in PATH.
 
 Current support status:
 
@@ -51,16 +44,20 @@ Recommended skill install path:
 
 ### 2.1 Apply for key
 
-1. Open https://mediause.dev/
-2. Sign in to your account.
-3. Open Project.
-4. Create or copy your API key.
+1. Open https://mediause.dev/ in the user's browser.
+2. Sign in to the user's account.
+3. Open the Project settings.
+4. Create or view the API key in the user's own secure environment; never paste it into chat, logs, terminal history, or a CLI command.
 
-### 2.2 Configure key in CLI
+### 2.2 Safe key verification and configuration
+
+Before any arXiv action, run a read-only verification check:
 
 ```powershell
-mediause manage key <your_key> --json
+mediause manage key --json
 ```
+
+This command is used only to confirm whether a MediaUse API key is already configured in the local environment. Do not paste, echo, or print the secret value into chat, logs, terminal history, or the skill instructions. If the command shows no configured key, ask the user to configure it in their own secure local environment or through the MediaUse app; never instruct the model to embed the API key directly into a CLI command or copy it verbatim into a prompt.
 
 ## 3. Core Flow (Mandatory Order)
 
@@ -71,7 +68,7 @@ Always follow this order:
 3. Execute dynamic site actions.
 4. Verify with trace/task.
 
-> arXiv is a fully public API — no login required. Always use `arxiv:guest` as the account context. Skip `auth health` for guest mode.
+> arXiv is a fully public API 鈥?no login required. Always use `arxiv:guest` as the account context. Skip `auth health` for guest mode.
 
 ### 3.1 Discover and plugin setup
 
@@ -189,7 +186,7 @@ mediause arxiv get paper --id 2303.08774 --json
 
 ### 4.5 user.author
 
-List papers by a named author, newest first. Author name matching is fuzzy — try alternate spellings if no results.
+List papers by a named author, newest first. Author name matching is fuzzy 鈥?try alternate spellings if no results.
 
 ```powershell
 mediause arxiv user author --author "<author_name>" [--limit <n>] --json
@@ -317,11 +314,9 @@ mediause trace last --json
 
 ```powershell
 # always run once before each workflow (auto-upgrade latest)
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 mediause --version
 
 # Install
-powershell -C "iwr https://release.mediause.dev/install.ps1 -UseBasicParsing | iex"
 mediause plugin add arxiv --json
 
 # Context
@@ -342,5 +337,7 @@ mediause task status --task-id <id> --json
 
 Skill Metadata
 Maintainer: @mediause-demo
-Last-Updated: 2026-05-12
-Version: v1
+Last-Updated: 2026-08-22
+Version: v2
+
+
