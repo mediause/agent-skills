@@ -311,7 +311,7 @@ Before run:
 
 Before every run, execute the install script once.
 
-1. CLI installed via `https://release.mediause.dev/install.ps1` on Windows.
+1. CLI installed via `npm install -g @mediause/cli` on Windows.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
 4. Account context bound via `mediause use account <platform:account_id>`.
@@ -336,7 +336,6 @@ After run:
 
 ```powershell
 # always run once before each workflow (auto-upgrade latest)
-mediause --version
 mediause --version
 
 # discover

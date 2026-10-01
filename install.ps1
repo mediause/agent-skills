@@ -8,6 +8,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$utf8NoBom = New-Object -TypeName System.Text.UTF8Encoding -ArgumentList $false
+$OutputEncoding = $utf8NoBom
+[Console]::OutputEncoding = $utf8NoBom
+
 function Get-PlatformKey {
   $isWindowsPlatform = [System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform(
     [System.Runtime.InteropServices.OSPlatform]::Windows
@@ -263,6 +267,22 @@ function Get-PathSegmentsLower {
     ForEach-Object { $_.TrimEnd("\\").ToLowerInvariant() })
 }
 
+function Get-FileSha256 {
+  param([string]$Path)
+
+  $hashAlgorithm = [System.Security.Cryptography.SHA256]::Create()
+  $stream = $null
+  try {
+    $stream = [System.IO.File]::OpenRead($Path)
+    return ([BitConverter]::ToString($hashAlgorithm.ComputeHash($stream))).Replace("-", "").ToLowerInvariant()
+  } finally {
+    if ($null -ne $stream) {
+      $stream.Dispose()
+    }
+    $hashAlgorithm.Dispose()
+  }
+}
+
 function Download-FileWithCacheBust {
   param(
     [string]$DownloadUrl,
@@ -292,7 +312,7 @@ function Download-FileWithCacheBust {
       return
     }
 
-    $actualHash = (Get-FileHash -Path $OutputPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    $actualHash = Get-FileSha256 -Path $OutputPath
     if ($actualHash -eq $ExpectedSha256) {
       return
     }
@@ -360,7 +380,7 @@ try {
     Download-FileWithCacheBust -DownloadUrl $downloadUrl -OutputPath $tmpFile -ExpectedSha256 $sha256
 
     if (-not [string]::IsNullOrWhiteSpace($sha256)) {
-      $actualHash = (Get-FileHash -Path $tmpFile -Algorithm SHA256).Hash.ToLowerInvariant()
+      $actualHash = Get-FileSha256 -Path $tmpFile
       if ($actualHash -ne $sha256) {
         Remove-Item -Path $tmpFile -Force -ErrorAction SilentlyContinue
         throw "SHA256 mismatch. expected=$sha256 actual=$actualHash"
