@@ -268,7 +268,7 @@ mediause trace last --json
 
 Before run:
 
-1. Run `https://release.mediause.dev/install.ps1` once to auto-install/upgrade latest CLI.
+1. Run `npm install -g @mediause/cli` once to auto-install/upgrade latest CLI.
 2. PATH updated and `mediause --version` works.
 3. API key configured and verified.
 4. Account context bound via `mediause use account <platform:account_id> --show` (recommended for lower interception risk).
